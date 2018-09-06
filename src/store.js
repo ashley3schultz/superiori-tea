@@ -1,3 +1,11 @@
+import {createStore, applyMiddleware} from 'redux';
+import rootReducer from '../reducers/rootReducer';
+import thunk from 'redux-thunk';
 
-
-// wget --no-check-certificate 'https://docs.google.com/uc?export=download&id=1FGoUSUuyA2RE31KaH0FSvSmzyPpoL3MJ' -O Screen.gif
+export default function configureStore() {
+  return createStore(
+    rootReducer,
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
+    applyMiddleware(thunk)
+  );
+}
