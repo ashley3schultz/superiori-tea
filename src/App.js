@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Game from './containers/GameContainer'
 import './App.css';
 
 class App extends Component {
@@ -8,9 +9,7 @@ class App extends Component {
         <header className="App-header">
           <h1 className="Superiori-Tea">Superiori-Tea</h1>
         </header>
-        <body>
-
-        </body>
+        <Game/>
       </div>
     );
   }
