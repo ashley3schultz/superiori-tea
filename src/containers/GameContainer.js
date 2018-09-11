@@ -13,6 +13,22 @@ class Game extends Component {
 
     startTimer = () => {
       this.setState({time: this.state.time - 1})
+      if (this.state.time === 0) {
+        alert('times up')
+        this.setState({time: 15})
+        this.setState({level: this.state.level + 1})
+        this.setState({total: this.state.total.concat([this.state.basket])})
+        this.setState({basket: []})
+      }
+    }
+
+    collectLeaf = (event) => {
+      const leaf = event.target.getAttribute('id')
+      if (leaf.length < 4) {
+        this.setState({basket: this.state.basket.concat(leaf)})
+        document.getElementById(leaf).remove();
+        console.log(this.state.basket)
+      }
     }
 
   render() {
@@ -22,7 +38,7 @@ class Game extends Component {
         <p>Basket: {this.state.basket.length}</p>
         <p>Time: {this.state.time}</p>
         <button onClick={this.startTimer}>Start</button>
-        <Trees/>
+        <Trees collectLeaf={this.collectLeaf}/>
       </div>
     );
   }
@@ -30,7 +46,7 @@ class Game extends Component {
 
 const mapStateToProps = state => {
   return {
-    level: state.level
+    state: state
   }
 }
 
