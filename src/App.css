@@ -2,10 +2,50 @@
   text-align: center;
 }
 
-/* .App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
-} */
+div.tree {
+  width: 20%;
+  display: inline-block;
+  position: relative;
+  border: 1px solid black;
+}
+
+div.stem {
+  width: 60%;
+  height: auto;
+  margin: auto;
+  border: 1px solid black;
+  position: absolute;
+}
+
+img.stem {
+  width: 100%;
+}
+
+div.leaf-left {
+  width: 49%;
+  height: 14%;
+  float: right;
+  border: 1px solid black;
+}
+
+div.leaf-right {
+  width: 48%;
+  height: 14%;
+  float: left;
+  border: 1px solid black;
+}
+
+img.leaf {
+  width: 50%;
+}
+
+.leaf:hover {
+  opacity: 0.3;
+}
+
+.bud:hover {
+  opacity: 0.3;
+}
 
 .App-title {
   font-size: 1.5em;

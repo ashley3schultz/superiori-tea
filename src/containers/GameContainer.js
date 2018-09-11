@@ -27,7 +27,6 @@ class Game extends Component {
       if (leaf.length < 4) {
         this.setState({basket: this.state.basket.concat(leaf)})
         document.getElementById(leaf).remove();
-        console.log(this.state.basket)
       }
     }
 
