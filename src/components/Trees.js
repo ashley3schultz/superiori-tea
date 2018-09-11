@@ -9,7 +9,7 @@ const Trees = props => {
     return (
         <div>
             {trees.map(tree => (
-                tree.map(leaf => <Leaf leaf={leaf} key={leaf}/>)
+                tree.map(leaf => <Leaf leaf={leaf} key={leaf} stem={tree[0].replace('stem-', '')} collectLeaf={props.collectLeaf}/>)
                 )
             )}
             {/* {trees[this.props.level - 1].map(leaf => <Leaf leaf={leaf}/>)} */}
