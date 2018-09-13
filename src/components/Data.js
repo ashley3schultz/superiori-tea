@@ -49,11 +49,11 @@ export default const trees = [
     {id:  uuid(), stem: 'stem-y', leaves: leaves.a}]
 
 export default const rules = [
-    {purity: 'b', quality: 6, outOf: 6},
-    {purity: 'g', quality: 4, outOf: 4},
-    {purity: 'o', quality: 6, outOf: 6},
-    {purity: 'w', quality: 2, outOf: 2},
-    {purity: 'y', quality: 4, outOf: 4}]
+    {purity: 'b', quality: 6, outOf: 6, tips: 'Black Tea Challenge, Only pick the young leaves from da ye zhong cultivar'},
+    {purity: 'g', quality: 4, outOf: 4, tips: 'Green Tea Challenge, Only pick the buds from long jing cultivar'},
+    {purity: 'o', quality: 6, outOf: 6, tips: 'Oolong Tea Challenge, Only pick the up to the fourth leaf from tie guan yin cultivar'},
+    {purity: 'w', quality: 2, outOf: 2, tips: 'White Tea Challenge, Only pick the buds from da bai cultivar'},
+    {purity: 'y', quality: 4, outOf: 4, tips: 'Yellow Tea Challenge, Only pick the buds from jin ji cultivar'}]
 
 export default const emptyBasket = {
     pureCultivar: 0,

@@ -6,6 +6,7 @@ import {emptyBasket, trees, rules} from '../components/Data'
 class Game extends Component {
 
     state = {
+        msg: <button onClick={this.playGame}>Start</button>,
         level: 0,
         score: [],
         trees: trees.slice(),
@@ -25,19 +26,20 @@ class Game extends Component {
     //   }
     // }
 
-    startTimer = () => {
-        if (this.state.time > 0 && this.state.time !== 'Game Over') {
+    playGame = () => {
+        if (this.state.time > 0) { //ajusts timer
+            this.setState({msg: rules[this.state.level].tips}) if this.state.time === 15
             this.setState({time: this.state.time - 1})
             setTimeout(startTimer, 1000);
         } else if (this.state.time === 0) {
-            if (this.state.level < 4) {
+            if (this.state.level < 4) { //sets state for next level
                 this.setState({level:  this.state.level + 1})
                 this.setState({score: this.state.score.concat(addScore(this.state.basket))})
                 this.setState({trees: trees.slice()})
                 this.setState({basket: emptyBasket})
                 this.setState({time: 15})
-            } else {
-                this.setState({level:  'Game Over'})
+            } else { //saves game!
+                this.setState({msg: <button onClick={this.playGame}>Play Again?</button>})
                 this.setState({score: this.state.score.concat(addScore(this.state.basket))})
                 this.saveGame
             }
@@ -65,7 +67,7 @@ class Game extends Component {
 
     collectLeaf = (event) => {
       const leaf = event.target.getAttribute('id')split('*')
-      if (leaf.length < 4) {
+      if (leaf.length < 4 && this.state.time > 0) {
         this.setState({basket.total: this.state.basket.total + 1})
         var array = this.state.trees.leaves
         var index = array.indexOf(event.target.value)
@@ -85,7 +87,7 @@ class Game extends Component {
         <h3>Level {this.state.level + 1}</h3>
         <p>Basket: {this.state.basket.total}</p>
         <p>Time: {this.state.time}</p>
-        <button onClick={this.startTimer}>Start</button>
+        {this.state.msg}
         <Trees trees={this.state.trees} collectLeaf={this.collectLeaf}/>
       </div>
     );
