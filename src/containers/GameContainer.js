@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import Trees from '../components/Trees'
+import {emptyBasket, trees, rules} from '../components/Data'
 const uuid = require('uuid/v3')
 
 class Game extends Component {
@@ -9,7 +10,7 @@ class Game extends Component {
         level: 0,
         score: [],
         trees: trees.slice(),
-        basket: {pureCultivar: 0, qualityLeaves: 0, total: 0},
+        basket: emptyBasket,
         time: 15
     }
 
