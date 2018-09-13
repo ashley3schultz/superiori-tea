@@ -1,16 +1,30 @@
 import React from 'react';
 import Tree from './Tree'
 
-const leavesA = ['leaf-a1', 'leaf-a2', 'leaf-a3', 'leaf-a4', 'leaf-a5', 'leaf-a6', 'leaf-a7', 'leaf-a8', 'leaf-a9', 'leaf-a10', 'leaf-a11', 'leaf-a12', 'leaf-a13', 'leaf-a14', 'leaf-a15', 'leaf-a16']
-const leavesB = ['leaf-b1', 'leaf-b2', 'leaf-b3', 'leaf-b4', 'leaf-b5', 'leaf-b6', 'leaf-b7', 'leaf-b8', 'leaf-b9', 'leaf-b10', 'leaf-b11', 'leaf-b12', 'leaf-b13', 'leaf-b14', 'leaf-b15', 'leaf-b16']
-const trees = [['stem-b'].concat(...leavesA), ['stem-g'].concat(...leavesB), ['stem-o'].concat(...leavesA), ['stem-w'].concat(...leavesB), ['stem-y'].concat(...leavesA)]
+const leavesA = {
+    right: ['leaf-a2', 'leaf-a4', 'leaf-a6', 'leaf-a8', 'leaf-a10', 'leaf-a12', 'leaf-a14', 'leaf-a16'],
+    left: ['leaf-a1', 'leaf-a3', 'leaf-a5', 'leaf-a7', 'leaf-a9', 'leaf-a11', 'leaf-a13', 'leaf-a15']
+}
+
+const leavesB = {
+    left: ['leaf-b2', 'leaf-b4', 'leaf-b6', 'leaf-b8', 'leaf-b10', 'leaf-b12', 'leaf-b14', 'leaf-b16'],
+    right: ['leaf-b1', 'leaf-b3', 'leaf-b5', 'leaf-b7', 'leaf-b9', 'leaf-b11', 'leaf-b13', 'leaf-b15']
+}
+
+const trees = [
+    {stem: 'stem-b', leaves: leavesA},
+    {stem: 'stem-g', leaves: leavesB}, 
+    {stem: 'stem-o', leaves: leavesA}, 
+    {stem: 'stem-w', leaves: leavesB}, 
+    {stem: 'stem-y', leaves: leavesA}]
+
 const Trees = props => {
     return (
         <div className='trees'>
             {trees.map(tree => 
                 <Tree 
                     tree={tree} 
-                    key={tree[0]}  
+                    key={tree.stem}  
                     collectLeaf={props.collectLeaf}  
                 />
             )}
