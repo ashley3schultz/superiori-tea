@@ -13,16 +13,47 @@ class Game extends Component {
         time: 15
     }
 
+    // startTimer = () => {
+    //   this.timer = setInterval(() => this.setState({time: this.state.time - 1}), 1000);
+    //   if (this.state.time === 0) {
+    //     clearInterval(this.timer)
+    //     this.setState({level: this.state.level + 1})
+    //     this.setState({score: this.state.score.concat(addScore(this.state.basket))})
+    //     this.setState({trees: trees.slice()})
+    //     this.setState({basket: emptyBasket})
+    //     this.setState({time: 15})
+    //   }
+    // }
+
     startTimer = () => {
-      setInterval(function(){ this.setState({time: this.state.time - 1}) }, 1000);
-      if (this.state.time === 0) {
-        alert('times up')
-        this.setState({level: this.state.level + 1})
-        this.setState({score: this.state.score.concat(addScore(this.state.basket))}),
+        if (this.state.time > 0 && this.state.time !== 'Game Over') {
+            this.setState({time: this.state.time - 1})
+            setTimeout(startTimer, 1000);
+        } else if (this.state.time === 0) {
+            if (this.state.level < 4) {
+                this.setState({level:  this.state.level + 1})
+                this.setState({score: this.state.score.concat(addScore(this.state.basket))})
+                this.setState({trees: trees.slice()})
+                this.setState({basket: emptyBasket})
+                this.setState({time: 15})
+            } else {
+                this.setState({level:  'Game Over'})
+                this.setState({score: this.state.score.concat(addScore(this.state.basket))})
+                this.saveGame
+            }
+        }
+    }
+
+    replayGame = () => {
+        this.setState({level: 0})
+        this.setState({score: []})
         this.setState({trees: trees.slice()})
         this.setState({basket: emptyBasket})
         this.setState({time: 15})
-      }
+    }
+
+    saveGame = () => {
+      alert('game saved')
     }
 
     addScore = (basket) => {
