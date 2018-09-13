@@ -9,14 +9,14 @@ import rootReducer from './reducers/rootReducer'
 import thunk from 'redux-thunk';
 
 let store = createStore(rootReducer,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && 
+  window.__REDUX_DEVTOOLS_EXTENSION__ &&
   window.__REDUX_DEVTOOLS_EXTENSION__(),
   applyMiddleware(thunk)
 );
 
 ReactDOM.render(
-    <Provider store={store}>
+  <Provider store={store}>
     <App/>
-  </Provider>, 
+  </Provider>,
   document.getElementById('root'));
 registerServiceWorker();
