@@ -1,33 +1,29 @@
 import React from 'react';
 import Leaf from './Leaf'
 
+const uuidv1 = require('uuid/v1');
+
 const Tree = props => {
-    let type
-    let align
+    const stem = props.tree.stem
+    const renderLeaf = (stem, leaf) => (
+        <Leaf
+            leaf={leaf} 
+            key={uuidv1()} 
+            stem={stem.replace('stem-', '')} 
+            collectLeaf={props.collectLeaf}  
+        />
+    )
     return (
         <div className='tree'>
-            {props.tree.map((leaf, i) => {
-                if (i === 0) {
-                    type = 'stem'
-                } else {
-                    type = 'leaf'
-                    if (leaf.includes('leaf-a')) {
-                        align = ((i%2 === 0) ? 'left' : 'right')
-                    } else if (leaf.includes('leaf-b')) {
-                            align = ((i%2 === 0) ? 'right' : 'left')
-                    }
-                }
-                return (
-                    <Leaf 
-                        leaf={leaf} 
-                        key={props.tree[0].replace('stem-', '') + i} 
-                        stem={props.tree[0].replace('stem-', '')} 
-                        collectLeaf={props.collectLeaf}  
-                        type={type}
-                        align={align}
-                    />
-                )
-            })}
+            <div className='stem'>
+                {renderLeaf(stem, stem)}
+            </div>
+            <div className='left'>
+                {props.tree.leaves.left.map(leaf => renderLeaf(stem, leaf) )}
+            </div>
+            <div className='right'>
+                {props.tree.leaves.right.map(leaf => renderLeaf(stem, leaf) )}
+            </div>
         </div>
     )
 }
