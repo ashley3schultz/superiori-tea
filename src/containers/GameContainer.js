@@ -8,7 +8,8 @@ class Game extends Component {
         level: 0,
         basket: [],
         total: [],
-        time: 15
+        time: 15,
+        leaves: []
     }
 
     startTimer = () => {
@@ -26,7 +27,7 @@ class Game extends Component {
       const leaf = event.target.getAttribute('id')
       if (leaf.length < 4) {
         this.setState({basket: this.state.basket.concat(leaf)})
-        document.getElementById(leaf).remove();
+        // document.getElementById(leaf).style.visibility='hidden';
       }
     }
 
