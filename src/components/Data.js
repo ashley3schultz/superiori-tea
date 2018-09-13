@@ -1,4 +1,5 @@
 import React from 'react';
+const uuid = require('uuid/v3')
 
 const leaves = {
   a: {right: [
@@ -41,11 +42,11 @@ const leaves = {
   }}
 
 export default const trees = [
-    {stem: 'stem-b', leaves: leaves.a},
-    {stem: 'stem-g', leaves: leaves.b},
-    {stem: 'stem-o', leaves: leaves.a},
-    {stem: 'stem-w', leaves: leaves.b},
-    {stem: 'stem-y', leaves: leaves.a}]
+    {id:  uuid(), stem: 'stem-b', leaves: leaves.a},
+    {id:  uuid(), stem: 'stem-g', leaves: leaves.b},
+    {id:  uuid(), stem: 'stem-o', leaves: leaves.a},
+    {id:  uuid(), stem: 'stem-w', leaves: leaves.b},
+    {id:  uuid(), stem: 'stem-y', leaves: leaves.a}]
 
 export default const rules = [
     {purity: 'b', quality: 6, outOf: 6},

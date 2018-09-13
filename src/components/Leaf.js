@@ -7,7 +7,7 @@ const Leaf = props => {
                 onClick={props.collectLeaf}
                 src={require('./images/' + props.leaf.name + '.png')}
                 alt={props.leaf.name}
-                id={props.stem + '-' + props.leaf.name.replace('leaf-a', '').replace('leaf-b', '') + props.leaf.id}
+                id={props.stem + '*' + props.leaf.name.replace('leaf-a', '').replace('leaf-b', '') + '*' + props.leaf.id}
             />
         </div>
     )

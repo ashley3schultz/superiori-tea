@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import Trees from '../components/Trees'
 import {emptyBasket, trees, rules} from '../components/Data'
-const uuid = require('uuid/v3')
 
 class Game extends Component {
 
@@ -34,7 +33,7 @@ class Game extends Component {
     }
 
     collectLeaf = (event) => {
-      const leaf = event.target.getAttribute('id')split('-')
+      const leaf = event.target.getAttribute('id')split('*')
       if (leaf.length < 4) {
         this.setState({basket.total: this.state.basket.total + 1})
         var array = this.state.trees.leaves
