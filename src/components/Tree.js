@@ -5,6 +5,7 @@ const uuidv1 = require('uuid/v1');
 
 const Tree = props => {
     const stem = props.tree.stem
+    const leaves = props.tree.leaves
     const renderLeaf = (stem, leaf) => (
         <Leaf
             leaf={leaf} 
@@ -19,10 +20,10 @@ const Tree = props => {
                 {renderLeaf(stem, stem)}
             </div>
             <div className='left'>
-                {props.tree.leaves.left.map(leaf => renderLeaf(stem, leaf) )}
+                {leaves.left.map(leaf => renderLeaf(stem, leaf))}
             </div>
             <div className='right'>
-                {props.tree.leaves.right.map(leaf => renderLeaf(stem, leaf) )}
+                {leaves.right.map(leaf => renderLeaf(stem, leaf) )}
             </div>
         </div>
     )
