@@ -31,8 +31,7 @@ class Game extends Component {
                 this.setState({basket: emptyBasket})
                 this.setState({time: 15})
                 this.setState({score: 0})
-                console.log(this.state)
-            } else { //saves game!
+            } else {
                 this.setState({msg: undefined})
                 this.setState({scores: this.state.scores.concat(this.state.score)})
                 this.setState({score: (this.state.scores[0] + this.state.scores[1] + this.state.scores[2] + this.state.scores[3] + this.state.scores[4])})
