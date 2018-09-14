@@ -2,13 +2,13 @@ import React from 'react';
 import Leaf from './Leaf'
 
 const Tree = props => {
-    const stem = props.tree.stem
+    const stem = props.tree
     const leaves = props.tree.leaves
     const renderLeaf = (leaf) => (
         <Leaf
             leaf={leaf}
             key={leaf.id}
-            stem={stem.replace('stem-', '')}
+            stem={stem.name.replace('stem-', '')}
             collectLeaf={props.collectLeaf}
         />
     )
