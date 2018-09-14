@@ -1,5 +1,7 @@
-import React from 'react';
-const uuid = require('uuid/v3')
+// import React from 'react';
+// import { v3 } from 'uuid';
+
+var uuid = require('react-native-uuid');
 
 const leaves = {
   a: {right: [
@@ -41,21 +43,21 @@ const leaves = {
     {name: 'leaf-b15', id: uuid()}]
   }}
 
-export default const trees = [
+export const trees = [
     {id:  uuid(), stem: 'stem-b', leaves: leaves.a},
     {id:  uuid(), stem: 'stem-g', leaves: leaves.b},
     {id:  uuid(), stem: 'stem-o', leaves: leaves.a},
     {id:  uuid(), stem: 'stem-w', leaves: leaves.b},
     {id:  uuid(), stem: 'stem-y', leaves: leaves.a}]
 
-export default const rules = [
+export const rules = [
     {purity: 'b', quality: 6, outOf: 6, tips: 'Black Tea Challenge, Only pick the young leaves from da ye zhong cultivar'},
     {purity: 'g', quality: 4, outOf: 4, tips: 'Green Tea Challenge, Only pick the buds from long jing cultivar'},
     {purity: 'o', quality: 6, outOf: 6, tips: 'Oolong Tea Challenge, Only pick the up to the fourth leaf from tie guan yin cultivar'},
     {purity: 'w', quality: 2, outOf: 2, tips: 'White Tea Challenge, Only pick the buds from da bai cultivar'},
     {purity: 'y', quality: 4, outOf: 4, tips: 'Yellow Tea Challenge, Only pick the buds from jin ji cultivar'}]
 
-export default const emptyBasket = {
-    pureCultivar: 0,
-    qualityLeaves: 0,
-    total: 0}
+export const emptyBasket = {
+    pureCultivar: 5,
+    qualityLeaves: 4,
+    total: 8}
