@@ -1,54 +1,51 @@
-// import React from 'react';
-// import { v3 } from 'uuid';
-
 var uuid = require('react-native-uuid');
 
 const leaves = {
   a: {right: [
-    {name: 'leaf-a2', id: uuid()},
-    {name: 'leaf-a4', id: uuid()},
-    {name: 'leaf-a6', id: uuid()},
-    {name: 'leaf-a8', id: uuid()},
-    {name: 'leaf-a10', id: uuid()},
-    {name: 'leaf-a12', id: uuid()},
-    {name: 'leaf-a14', id: uuid()},
-    {name: 'leaf-a16', id: uuid()}],
+    {name: 'leaf-a2', id: uuid(), show: true},
+    {name: 'leaf-a4', id: uuid(), show: true},
+    {name: 'leaf-a6', id: uuid(), show: true},
+    {name: 'leaf-a8', id: uuid(), show: true},
+    {name: 'leaf-a10', id: uuid(), show: true},
+    {name: 'leaf-a12', id: uuid(), show: true},
+    {name: 'leaf-a14', id: uuid(), show: true},
+    {name: 'leaf-a16', id: uuid(), show: true}],
   left: [
-    {name: 'leaf-a1', id: uuid()},
-    {name: 'leaf-a3', id: uuid()},
-    {name: 'leaf-a5', id: uuid()},
-    {name: 'leaf-a7', id: uuid()},
-    {name: 'leaf-a9', id: uuid()},
-    {name: 'leaf-a11', id: uuid()},
-    {name: 'leaf-a13', id: uuid()},
-    {name: 'leaf-a15', id: uuid()}]
+    {name: 'leaf-a1', id: uuid(), show: true},
+    {name: 'leaf-a3', id: uuid(), show: true},
+    {name: 'leaf-a5', id: uuid(), show: true},
+    {name: 'leaf-a7', id: uuid(), show: true},
+    {name: 'leaf-a9', id: uuid(), show: true},
+    {name: 'leaf-a11', id: uuid(), show: true},
+    {name: 'leaf-a13', id: uuid(), show: true},
+    {name: 'leaf-a15', id: uuid(), show: true}]
   },
   b: {left: [
-    {name: 'leaf-b2', id: uuid()},
-    {name: 'leaf-b4', id: uuid()},
-    {name: 'leaf-b6', id: uuid()},
-    {name: 'leaf-b8', id: uuid()},
-    {name: 'leaf-b10', id: uuid()},
-    {name: 'leaf-b12', id: uuid()},
-    {name: 'leaf-b14', id: uuid()},
-    {name: 'leaf-b16', id: uuid()}],
+    {name: 'leaf-b2', id: uuid(), show: true},
+    {name: 'leaf-b4', id: uuid(), show: true},
+    {name: 'leaf-b6', id: uuid(), show: true},
+    {name: 'leaf-b8', id: uuid(), show: true},
+    {name: 'leaf-b10', id: uuid(), show: true},
+    {name: 'leaf-b12', id: uuid(), show: true},
+    {name: 'leaf-b14', id: uuid(), show: true},
+    {name: 'leaf-b16', id: uuid(), show: true}],
   right: [
-    {name: 'leaf-b1', id: uuid()},
-    {name: 'leaf-b3', id: uuid()},
-    {name: 'leaf-b5', id: uuid()},
-    {name: 'leaf-b7', id: uuid()},
-    {name: 'leaf-b9', id: uuid()},
-    {name: 'leaf-b11', id: uuid()},
-    {name: 'leaf-b13', id: uuid()},
-    {name: 'leaf-b15', id: uuid()}]
+    {name: 'leaf-b1', id: uuid(), show: true},
+    {name: 'leaf-b3', id: uuid(), show: true},
+    {name: 'leaf-b5', id: uuid(), show: true},
+    {name: 'leaf-b7', id: uuid(), show: true},
+    {name: 'leaf-b9', id: uuid(), show: true},
+    {name: 'leaf-b11', id: uuid(), show: true},
+    {name: 'leaf-b13', id: uuid(), show: true},
+    {name: 'leaf-b15', id: uuid(), show: true}]
   }}
 
 export const trees = [
-    {id:  uuid(), stem: 'stem-b', leaves: leaves.a},
-    {id:  uuid(), stem: 'stem-g', leaves: leaves.b},
-    {id:  uuid(), stem: 'stem-o', leaves: leaves.a},
-    {id:  uuid(), stem: 'stem-w', leaves: leaves.b},
-    {id:  uuid(), stem: 'stem-y', leaves: leaves.a}]
+    {name: 'stem-b', id:  uuid(), leaves: leaves.a},
+    {name: 'stem-g', id:  uuid(), leaves: leaves.b},
+    {name: 'stem-o', id:  uuid(), leaves: leaves.a},
+    {name: 'stem-w', id:  uuid(), leaves: leaves.b},
+    {name: 'stem-y', id:  uuid(), leaves: leaves.a}]
 
 export const rules = [
     {purity: 'b', quality: 6, outOf: 6, tips: 'Black Tea Challenge, Only pick the young leaves from da ye zhong cultivar'},
@@ -58,6 +55,6 @@ export const rules = [
     {purity: 'y', quality: 4, outOf: 4, tips: 'Yellow Tea Challenge, Only pick the buds from jin ji cultivar'}]
 
 export const emptyBasket = {
-    pureCultivar: 5,
-    qualityLeaves: 4,
-    total: 8}
+    pureCultivar: 0,
+    qualityLeaves: 0,
+    total: 0}
