@@ -7,16 +7,18 @@ class Game extends Component {
 
     state = {
         msg: undefined,
-        level: 4,
+        level: 0,
         scores: [],
         score: 0,
         trees: trees.slice(),
         basket: emptyBasket,
         time: 15,
-        rules: rules
+        rules: rules,
+        playing: false
     }
 
     playGame = () => {
+        this.setState({playing: true})
         if (this.state.time > 0) { //ajusts timer
             this.setState({msg: rules[this.state.level].tips})
             this.setState({time: this.state.time - 1})
@@ -24,6 +26,7 @@ class Game extends Component {
             setTimeout(this.playGame, 1000);
         } else if (this.state.time === 0) {
             if (this.state.level < 4) { //sets state for next level
+              console.log(this.state.basket)
                 this.setState({msg: undefined})
                 this.setState({level:  this.state.level + 1})
                 this.setState({scores: this.state.scores.concat(this.state.score)})
@@ -31,12 +34,14 @@ class Game extends Component {
                 this.setState({basket: emptyBasket})
                 this.setState({time: 15})
                 this.setState({score: 0})
+                this.setState({playing: false})
             } else {
                 this.setState({msg: undefined})
                 this.setState({scores: this.state.scores.concat(this.state.score)})
                 this.setState({score: (this.state.scores[0] + this.state.scores[1] + this.state.scores[2] + this.state.scores[3] + this.state.scores[4])})
                 this.saveGame()
                 this.resetGame()
+                this.setState({playing: false})
             }
         }
     }
@@ -61,22 +66,53 @@ class Game extends Component {
       return (Math.floor(purity) + Math.floor(quality) + Math.floor(outOf))
     }
 
-    // collectLeaf = (event) => {
-    //   const leaf = event.target.getAttribute('id')
-    //   // split('*')
-    //   if (leaf.length < 4 && this.state.time > 0) {
-    //     this.setState({basket.total: this.state.basket.total + 1})
-    //     var array = this.state.trees.leaves
-    //     var index = array.indexOf(event.target.value)
-    //     delete array[index];
-    //     if (leaf[0] === rules[this.state.level].purity) {
-    //       this.setState({basket.pureCultivar: this.state.basket.pureCultivar + 1})
-    //     }
-    //     if (leaf[1] =< rules[this.state.level].quality) {
-    //       this.setState({basket.qualityLeaves: this.state.basket.qualityLeaves + 1})
-    //     }
-    //   }
-    // }
+    hideLeaf = () => {
+      console.log('0')
+      // var array = this.state.trees
+      //   var rmvlf = array.map((t, i) => {
+      //     t.leaves.left.map((l, i) => {
+      //       if (l.id === leaf[2]s) {
+      //         return l
+      //       }
+      //     })
+      //     t.leaves.right.map((l, i) => {
+      //       if (l.id === leaf[2]) {
+      //         return l
+      //       }
+      //     })
+      //   })
+    }
+
+    addBasketTotal = () => {
+      console.log('1')
+      this.setState({ basket: { ...this.state.basket, total: this.state.basket.total + 1} });
+    }
+
+    addBasketPureCultivar = () => {
+      console.log('2')
+      this.setState({ basket: { ...this.state.basket, pureCultivar: this.state.basket.pureCultivar + 1} })
+    }
+
+    addBasketQualityLeaves = () => {
+      console.log('3')
+      this.setState({ basket: { ...this.state.basket, qualityLeaves: this.state.basket.qualityLeaves + 1} })
+    }
+
+    collectLeaf = (event) => {
+      const leaf = event.target.getAttribute('id').split('*')
+      const cultivar = this.state.rules[this.state.level].purity
+      const quality = this.state.rules[this.state.level].quality
+      if (leaf[1].length < 4 && this.state.playing === true) {
+        if (leaf[0] === cultivar) {
+          if (parseInt(leaf[1], 10) <= quality) {
+            this.addBasketQualityLeaves()
+          }
+          this.addBasketPureCultivar()
+        }
+        this.addBasketTotal()
+        this.hideLeaf()
+      }
+    }
 
   render() {
     return (
