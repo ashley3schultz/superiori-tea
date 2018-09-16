@@ -15,7 +15,6 @@ const Tree = props => {
     return (
         <div className='tree'>
             <div className='stem'>
-                {renderLeaf(stem)}
             </div>
             <div className='left'>
                 {leaves.left.map(leaf => renderLeaf(leaf))}
