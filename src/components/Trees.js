@@ -2,6 +2,7 @@ import React from 'react';
 import Tree from './Tree'
 
 const Trees = props => {
+
     return (
         <div className='trees'>
             {props.trees.map(tree =>
