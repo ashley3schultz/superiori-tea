@@ -2,13 +2,11 @@ import React from 'react';
 import Leaf from './Leaf'
 
 const Tree = props => {
-    const stem = props.tree
-    const leaves = props.tree.leaves
     const renderLeaf = (leaf) => (
         <Leaf
             leaf={leaf}
             key={leaf.id}
-            stem={stem.name.replace('stem-', '')}
+            stem={props.tree.name}
             collectLeaf={props.collectLeaf}
         />
     )
@@ -17,10 +15,10 @@ const Tree = props => {
             <div className='stem'>
             </div>
             <div className='left'>
-                {leaves.left.map(leaf => renderLeaf(leaf))}
+                {props.tree.leaves.left.map(leaf => renderLeaf(leaf))}
             </div>
             <div className='right'>
-                {leaves.right.map(leaf => renderLeaf(leaf) )}
+                {props.tree.leaves.right.map(leaf => renderLeaf(leaf) )}
             </div>
         </div>
     )
