@@ -10,9 +10,9 @@ div.tree {
 
 div.stem {
   top: 48px;
-  left: 72px;
-  width: 2px;
-  height: 275px;
+  left: 75px;
+  width: 1px;
+  height: 290px;
   background-color: rgb(160, 160, 45);
   position: absolute;
 }
