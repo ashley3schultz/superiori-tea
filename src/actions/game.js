@@ -2,6 +2,10 @@ export const startLevel = () => {
     return { type: "START_LEVEL" }
 }
 
+export const incrementTime = () => {
+    return { type: "INCREMENT_TIME" }
+}
+
 export const changeLevel = () => {
     return { type: "CHANGE_LEVEL" }
 }

@@ -5,8 +5,21 @@ import { connect } from 'react-redux'
 
 class Game extends Component {
 
-  handleStart = () => {
-    this.props.playGame()
+  playGame = () => {
+    if (this.props.time === 15) {
+        this.props.startLevel()
+    }
+    if (this.props.time > 0) { //ajusts timer
+        this.props.incrementTime()
+        setTimeout(this.playGame, 1000);
+    } else {
+        if (this.props.level < 4) {
+            this.props.setNextLevel()
+        } else {
+            this.props.saveGame()
+            this.props.resetGame()
+        }
+    }
   }
 
   render() {
@@ -16,7 +29,7 @@ class Game extends Component {
         <p>Basket: {this.props.basket} |
         Time: {this.props.time} |
         Score: {this.props.score}</p>
-        {this.props.msg || <button onClick={this.handleStart}>Start</button>}
+        {this.props.msg || <button onClick={this.playGame}>Start</button>}
         <Trees trees={this.props.trees} collectLeaf={this.props.collectLeaf}/>
       </div>
     );
