@@ -21,6 +21,10 @@ export default function gameReducer(
             // *** Fetch Api ***
             return state
 
+        case "UPDATE_INPUT":
+            console.log('input updated')
+            return {...state, user: action.input}
+
         case "START_LEVEL":
             console.log('level started')
             return {...state,

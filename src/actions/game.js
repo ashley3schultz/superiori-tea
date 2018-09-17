@@ -2,6 +2,10 @@ export const fetchTopScore = () => {
     return { type: "FETCH_TOP_SCORE" }
 }
 
+export const updateUser = (input) => {
+  return { type: "UPDATE_INPUT", input: input }
+}
+
 export const startLevel = () => {
     return { type: "START_LEVEL" }
 }
