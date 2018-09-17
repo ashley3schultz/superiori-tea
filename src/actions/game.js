@@ -1,7 +1,15 @@
-export const playGame = () => {
-    return { type: "PLAY_GAME" }
-  }
-  
-export const collectLeaf = (leaf) => {
-    return { type: "COLLECT_LEAF", leaf: leaf }
+export const startLevel = () => {
+    return { type: "START_LEVEL" }
+}
+
+export const changeLevel = () => {
+    return { type: "CHANGE_LEVEL" }
+}
+
+export const saveReset = () => {
+    return { type: "SAVE_RESET" }
+}
+
+export const collectLeaf = (basket) => {
+    return { type: "COLLECT_LEAF", basket: basket }
 }

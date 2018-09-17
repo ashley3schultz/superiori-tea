@@ -2,10 +2,10 @@ import React from 'react';
 import Tree from './Tree'
 
 const Trees = props => {
-
+    const randomizedTrees = props.trees.sort(function(a, b){return a.id - b.id})
     return (
         <div className='trees'>
-            {props.trees.map(tree =>
+            {randomizedTrees.map(tree =>
                 <Tree
                     tree={tree}
                     key={tree.id}

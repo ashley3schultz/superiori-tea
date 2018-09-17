@@ -15,10 +15,18 @@ const Tree = props => {
             <div className='stem'>
             </div>
             <div className='left'>
-                {props.tree.leaves.left.map(leaf => renderLeaf(leaf))}
+                {props.tree.leaves.map((leaf, i) =>
+                  if (leaf.show && i < 9) {
+                    renderLeaf(leaf))
+                  }
+                }
             </div>
             <div className='right'>
-                {props.tree.leaves.right.map(leaf => renderLeaf(leaf) )}
+                {props.tree.leaves.map((leaf, i) =>
+                  if (leaf.show && i > 8) {
+                    renderLeaf(leaf))
+                  }
+                }
             </div>
         </div>
     )

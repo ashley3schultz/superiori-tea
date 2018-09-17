@@ -9,13 +9,12 @@ class Game extends Component {
     this.props.playGame()
   }
 
-
   render() {
     return (
       <div className="Game">
         <h3>Level {this.props.level + 1} {this.props.scores}</h3>
         <p>Basket: {this.props.basket} |
-        Time: {this.props.time} | 
+        Time: {this.props.time} |
         Score: {this.props.score}</p>
         {this.props.msg || <button onClick={this.handleStart}>Start</button>}
         <Trees trees={this.props.trees} collectLeaf={this.props.collectLeaf}/>
