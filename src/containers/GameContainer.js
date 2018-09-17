@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {rules} from '../components/Data'
 import Trees from '../components/Trees'
+import UserInput from '../components/UserInput'
 import { connect } from 'react-redux'
 // import { playGame } from '../actions/game'
 
@@ -44,10 +45,16 @@ class Game extends Component {
       this.props.collectLeaf(score, trees, basket)
   }
 
+  handleInput = (event) => {
+    const input = event.target.value
+    this.props.updateUser(input)
+  }
+
   render() {
     return (
       <div className="Game">
         <h3>Level {this.props.level + 1} {this.props.scores}</h3>
+        <UserInput handleInput={this.handleInput} user={this.props.user}/>
         <p>Basket: {this.props.basket} |
         Time: {this.props.time} |
         Score: {this.props.score}</p>
@@ -73,7 +80,8 @@ const mapStateToProps = (state) => {
     msg: state.msg,
     trees: state.trees,
     basket: state.basket.total,
-    rules: state.rules
+    user: state.user,
+    topScore: state.topScore
   }
 }
 
