@@ -7,7 +7,7 @@ const Tree = props => {
             leaf={leaf}
             key={leaf.id}
             stem={props.tree.name}
-            collectLeaf={props.collectLeaf}
+            handleLeafClick={props.handleLeafClick}
         />
     )
     return (

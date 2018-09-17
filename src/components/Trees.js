@@ -9,7 +9,7 @@ const Trees = props => {
                 <Tree
                     tree={tree}
                     key={tree.id}
-                    collectLeaf={props.collectLeaf}
+                    handleLeafClick={props.handleLeafClick}
                 />
             )}
         </div>

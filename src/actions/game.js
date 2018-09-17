@@ -1,19 +1,27 @@
+export const fetchTopScore = () => {
+    return { type: "FETCH_TOP_SCORE" }
+}
+
 export const startLevel = () => {
     return { type: "START_LEVEL" }
 }
 
-export const incrementTime = () => {
-    return { type: "INCREMENT_TIME" }
+export const reduceTime = () => {
+    return { type: "REDUCE_TIME" }
 }
 
-export const changeLevel = () => {
-    return { type: "CHANGE_LEVEL" }
+export const collectLeaf = (score, trees, basket) => {
+    return { type: "COLLECT_LEAF", score: score, trees: trees, basket: basket }
 }
 
-export const saveReset = () => {
-    return { type: "SAVE_RESET" }
+export const setNextLevel = () => {
+    return { type: "SET_NEXT_LEVEL" }
 }
 
-export const collectLeaf = (basket) => {
-    return { type: "COLLECT_LEAF", basket: basket }
+export const saveGame = () => {
+    return { type: "SAVE_GAME" }
+}
+
+export const resetGame = () => {
+    return { type: "RESET_GAME" }
 }
