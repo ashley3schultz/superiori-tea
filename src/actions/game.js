@@ -5,15 +5,6 @@ export const fetchTopScore = (game) => {
     return { type: "FETCH_TOP_SCORE", game: game }
 }
 
-export const fetchGames = () => {
-    return dispatch => {
-        return fetch(`${API_URL}`)
-          .then(response => response.json())
-          .then(game => dispatch(fetchTopScore(game)))
-          .catch(error => console.log(error));
-      };
-}
-
 export const updateUser = (input) => {
   return { type: "UPDATE_INPUT", input: input }
 }
