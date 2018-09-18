@@ -8,6 +8,7 @@ const Trees = props => {
               type='text'
               value={props.user}
               onChange={props.handleInput}
+              placeholder='Enter Your Name'
             />
         </div>
     )
