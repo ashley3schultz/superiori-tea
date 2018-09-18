@@ -1,5 +1,17 @@
-export const fetchTopScore = () => {
-    return { type: "FETCH_TOP_SCORE" }
+const API_URL = process.env.REACT_APP_API_URL;
+
+export const fetchTopScore = (game) => {
+    console.log('action top score')
+    return { type: "FETCH_TOP_SCORE", game: game }
+}
+
+export const fetchGames = () => {
+    return dispatch => {
+        return fetch(`${API_URL}`)
+          .then(response => response.json())
+          .then(game => dispatch(fetchTopScore(game)))
+          .catch(error => console.log(error));
+      };
 }
 
 export const updateUser = (input) => {
