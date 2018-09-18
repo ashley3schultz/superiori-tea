@@ -5,7 +5,7 @@ const Backgound = props => {
         <div className='background'>
         <img 
             src={require('./images/Scene.' + ((props.playing === true) ? 'gif' : 'png'))} 
-            alt={props.playing}
+            alt='background'
         />
         </div>
     )
