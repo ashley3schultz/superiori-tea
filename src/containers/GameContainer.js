@@ -3,26 +3,15 @@ import {rules} from '../components/Data'
 import Trees from '../components/Trees'
 import UserInput from '../components/UserInput'
 import { connect } from 'react-redux'
+import { bindActionCreators } from "redux";
+import * as actions from "../actions/game";
 // import axios from 'axios'
 
 class Game extends Component {
 
   componentDidMount() {
-    // this.props.fetchTopScore()
-    var request = new Request('http://10.0.0.31:3001/api/v1/games.json', {
-      method: 'POST', 
-      mode: 'cors', 
-      redirect: 'follow',
-      headers: new Headers({
-        'Content-Type': 'text/plain'
-      })
-    })
-    
-    fetch(request).then(response => {
-        console.log(response)
-        response.json()
-    })
-    .catch(error => console.log(error))
+    console.log('CDM')
+    actions.fetchGames()
   }
 
   playGame = () => {
@@ -111,16 +100,20 @@ const mapStateToProps = (state) => {
   }
 }
 
-const mapDispatchToProps = dispatch => ({
-  fetchTopScore: () => dispatch({ type: "FETCH_TOP_SCORE" }),
-  updateUser: input => dispatch({ type: "UPDATE_INPUT", input }),
-  startLevel: () => dispatch({ type: "START_LEVEL" }),
-  reduceTime: () => dispatch({ type: "REDUCE_TIME" }),
-  collectLeaf: (trees, basket) => dispatch({ type: "COLLECT_LEAF", trees, basket }),
-  setNextLevel: () => dispatch({ type: "SET_NEXT_LEVEL" }),
-  saveGame: () => dispatch({ type: "SAVE_GAME" }),
-  resetGame: () => dispatch({ type: "RESET_GAME" }),
-  updateScore: score => dispatch({ type: "UPDATE_SCORE", score })
-})
+// const mapDispatchToProps = dispatch => ({
+//   fetchGames: () => dispatch({ type: "FETCH_GAMES" }),
+//   updateUser: input => dispatch({ type: "UPDATE_INPUT", input }),
+//   startLevel: () => dispatch({ type: "START_LEVEL" }),
+//   reduceTime: () => dispatch({ type: "REDUCE_TIME" }),
+//   collectLeaf: (trees, basket) => dispatch({ type: "COLLECT_LEAF", trees, basket }),
+//   setNextLevel: () => dispatch({ type: "SET_NEXT_LEVEL" }),
+//   saveGame: () => dispatch({ type: "SAVE_GAME" }),
+//   resetGame: () => dispatch({ type: "RESET_GAME" }),
+//   updateScore: score => dispatch({ type: "UPDATE_SCORE", score })
+// })
+
+const mapDispatchToProps = dispatch => {
+  return { actions: bindActionCreators(actions, dispatch) };
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Game)
