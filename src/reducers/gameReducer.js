@@ -1,6 +1,6 @@
 // import {playGame, collectLeaf} from '../actions/game';
 import {emptyBasket, trees, rules} from '../components/Data'
-import axios from 'axios'
+// import axios from 'axios'
   
 export default function gameReducer(
     state = {
@@ -15,17 +15,11 @@ export default function gameReducer(
         user: '',
         topScore: {},
     }, action) {
+        console.log(action)
     switch (action.type) {
         case "FETCH_TOP_SCORE":
-            axios.get('http://10.0.0.31:3001/api/v1/games.json')
-                .then(response => {
-                    console.log(response)
-                    response.json()
-                })
-                .catch(error => console.log(error))
-            
-            return state
-            // {...state, topScore: game.score}
+            console.log('reducer Top Score')
+            return {...state, topScore: action.game}
 
         case "UPDATE_INPUT":
             console.log('input updated')
