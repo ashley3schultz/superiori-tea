@@ -5,11 +5,17 @@ import './App.css';
 class App extends Component {
   render() {
     return (
+      <div>
+      <div className="LeftSide">
+      </div>
       <div className="App">
         <header className="App-header">
           <h1 className="Superiori-Tea">Superiori-Tea</h1>
         </header>
         <Game/>
+      </div>
+      <div className="RightSide">
+      </div>
       </div>
     );
   }
