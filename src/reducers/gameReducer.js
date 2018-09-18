@@ -51,7 +51,7 @@ export default function gameReducer(
               level: state.level,
               scores: state.scores,
               score: action.score,
-              trees: action.trees
+              trees: action.trees,
               basket: action.basket,
               time: state.time,
               playing: state.playing,
