@@ -8,20 +8,19 @@ export default function gameReducer(
         score: 0,
         trees: trees,
         basket: emptyBasket,
-        time: 15,
+        time: 18,
         playing: false,
         user: '',
         topScore: {},
     }, action) {
     switch (action.type) {
-        case "FETCH_TOP_SCORE":
+        case "UPDATE_TOP_SCORE":
             return {...state, topScore: action.game}
 
         case "UPDATE_INPUT":
             return {...state, user: action.input}
 
         case "START_LEVEL":
-            console.log('level started')
             return {...state,
               msg: rules[state.level].tips,
               level: state.level,
@@ -29,7 +28,7 @@ export default function gameReducer(
               score: 0,
               trees: trees.sort(function(a, b){ return Math.random() - Math.random() }),
               basket: emptyBasket,
-              time: 15,
+              time: 18,
               playing: true,
               user: state.user,
               topScore: state.topScore,
@@ -39,7 +38,6 @@ export default function gameReducer(
             return {...state, time: state.time - 1}
 
         case "COLLECT_LEAF":
-            console.log('leaf collected')
             return {...state,
               msg: state.msg,
               level: state.level,
@@ -54,11 +52,9 @@ export default function gameReducer(
             }
         
         case "UPDATE_SCORE":
-        console.log('score updated')
         return {...state, score: action.score}
 
         case "SET_NEXT_LEVEL":
-            console.log('next level loaded')
             return {...state,
               msg: undefined,
               level: state.level + 1,
@@ -66,18 +62,11 @@ export default function gameReducer(
               score: 0,
               trees: trees.slice(),
               basket: emptyBasket,
-              time: 15,
+              time: 18,
               playing: false,
               user: state.user,
               topScore: state.topScore,
             }
-
-        case "SAVE_GAME":
-            console.log('game saved')
-            // *** Calculate Score ***
-            // *** Send To Api ***
-            // *** Fetch Api ***
-            return state
 
         case "RESET_GAME":
             console.log('new game loaded')
@@ -88,7 +77,7 @@ export default function gameReducer(
                 score: 0,
                 trees: trees.slice(),
                 basket: emptyBasket,
-                time: 15,
+                time: 18,
                 playing: false,
                 user: '',
                 topScore: state.topScore,
