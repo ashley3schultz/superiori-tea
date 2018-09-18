@@ -25,21 +25,21 @@ class Game extends Component {
   }
 
   getPercent(num1, num2, num3, num4) {
-    var a = num1 / num2 * 100 || 0)
-    var b = num3 / num1 * 100 || 0)
-    var c = num1 / num4 * 100 || 0)
+    var a = num1 / num2 * 100 || 0
+    var b = num3 / num1 * 100 || 0
+    var c = num1 / num4 * 100 || 0
     return Math.floor(a + b + c)
   }
 
-  handleLeafClick = () => {
-      const r = this.props.rules[this.props.level]
+  handleLeafClick = (event) => {
+      const r = rules[this.props.level]
       const b = this.props.basket
       const l = event.target.getAttribute('id').split('*')
-      const score = calculateScore(b.cultivar, b.total, b.quality, r.outOf)
+      const score = this.calculateScore(b.cultivar, b.total, b.quality, r.outOf)
       const trees = this.props.trees.map(tree => tree.leaves.filter(leaf => leaf !== l[2]))
       const basket = {
         cultivar: b.cultivar + (l[0] === r.cultivar) ? 1 : 0,
-        quality: b.quality + (parseInt(l[1]) <= r.quality) ? 1 : 0,
+        quality: b.quality + (l[1] <= r.quality) ? 1 : 0,
         total: b.total + 1
       }
       this.props.collectLeaf(score, trees, basket)
@@ -64,11 +64,11 @@ class Game extends Component {
     );
   }
 
-  getDefaultProps() {
-    return {
-      rules: {rules}
-    }
-  }
+  // defaultProps() {
+  //   return {
+  //     rules: {rules}
+  //   }
+  // }
 }
 
 const mapStateToProps = (state) => {
