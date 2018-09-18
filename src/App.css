@@ -1,3 +1,21 @@
+.background {
+  width: 800px;
+  margin: auto;
+  position: absolute;
+  top: 0px;
+  z-index: -1;
+}
+
+.background img {
+  width: 800px;
+}
+
+
+.background img:hover {
+  opacity: 1;
+}
+
+
 .App {
   text-align: center;
   width: 800px;
