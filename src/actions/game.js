@@ -2,7 +2,7 @@ const API_URL = process.env.REACT_APP_API_URL;
 
 export const fetchTopScore = (game) => {
     console.log('action top score')
-    return { type: "FETCH_TOP_SCORE", game: game }
+    return { type: "UPDATE_TOP_SCORE", game: game }
 }
 
 export const updateUser = (input) => {
@@ -27,10 +27,6 @@ export const updateScore = (score) => {
 
 export const setNextLevel = () => {
     return { type: "SET_NEXT_LEVEL" }
-}
-
-export const saveGame = () => {
-    return { type: "SAVE_GAME" }
 }
 
 export const resetGame = () => {
