@@ -24,6 +24,9 @@ const Tree = props => {
                     (i <= 7) ? renderLeaf(leaf) : null
                 )}
             </div>
+            <div className='tag'>
+                <p>{props.tree.tag}</p>
+            </div>
         </div>
     )
 }
