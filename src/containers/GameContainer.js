@@ -3,8 +3,27 @@ import {rules} from '../components/Data'
 import Trees from '../components/Trees'
 import UserInput from '../components/UserInput'
 import { connect } from 'react-redux'
+// import axios from 'axios'
 
 class Game extends Component {
+
+  componentDidMount() {
+    // this.props.fetchTopScore()
+    var request = new Request('http://10.0.0.31:3001/api/v1/games.json', {
+      method: 'POST', 
+      mode: 'cors', 
+      redirect: 'follow',
+      headers: new Headers({
+        'Content-Type': 'text/plain'
+      })
+    })
+    
+    fetch(request).then(response => {
+        console.log(response)
+        response.json()
+    })
+    .catch(error => console.log(error))
+  }
 
   playGame = () => {
     if (this.props.time === 15) {
