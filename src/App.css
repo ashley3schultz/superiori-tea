@@ -1,5 +1,7 @@
 .App {
   text-align: center;
+  width: 800px;
+  margin: auto;
 }
 
 div.tree {
@@ -65,12 +67,22 @@ img.bud {
   width: auto;
 }
 
+.UserInput {
+  position: absolute;
+  top: 25px;
+  right: 25px;
+}
+
 .App-title {
   font-size: 1.5em;
 }
 
 .hide {
-  display: none;
+  opacity: 0;
+}
+
+.hide:hover {
+  opacity: 0;
 }
 
 /* .App-intro {
