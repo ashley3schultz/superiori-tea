@@ -4,6 +4,15 @@
   margin: auto;
 }
 
+.dirt {
+  width: 800px;
+  height: 300px;
+  margin: auto;
+  position: absolute;
+  top: 485px;
+  background-color: rgb(68, 58, 58);
+}
+
 div.trees {
   margin-top: 75px;
 }
@@ -16,9 +25,9 @@ div.tree {
 
 div.stem {
   top: 48px;
-  left: 75px;
-  width: 1px;
-  height: 290px;
+  left: 80px;
+  width: 1.5px;
+  height: 300px;
   background-color: rgb(160, 160, 45);
   position: absolute;
 }
@@ -86,26 +95,27 @@ img.bud {
 .tag {
   color: rgb(194, 194, 194);
   font-size: 0.6em;
+  clear: both;
 }
 
 .UserInput {
+  width: 200px;
   float: right;
   margin-right: 25px;
   margin-top: 4px;
 }
 
+.UserInput input{
+  float: right;
+}
+
 .LeaderBoard {
+  width: 200px;
   float: left;
   margin-left: 25px;
   line-height: 0px;
 }
 
-
-/* .App-intro {
-  font-size: large;
-} */
-
-/* @keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-} */
+.LeaderBoard h3 {
+  float: left;
+}
