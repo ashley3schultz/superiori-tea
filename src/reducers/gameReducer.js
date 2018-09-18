@@ -1,13 +1,13 @@
 // import {playGame, collectLeaf} from '../actions/game';
 import {emptyBasket, trees, rules} from '../components/Data'
-
+  
 export default function gameReducer(
     state = {
         msg: undefined,
         level: 0,
         scores: [],
         score: 0,
-        trees: trees.slice(),
+        trees: trees,
         basket: emptyBasket,
         time: 15,
         playing: false,
@@ -15,7 +15,6 @@ export default function gameReducer(
         topScore: {},
     }, action) {
     switch (action.type) {
-
         case "FETCH_TOP_SCORE":
             console.log('top score fetched')
             // *** Fetch Api ***
@@ -32,7 +31,7 @@ export default function gameReducer(
               level: state.level,
               scores: state.scores,
               score: 0,
-              trees: trees.slice(),
+              trees: trees.sort(function(a, b){ return Math.random() - Math.random() }),
               basket: emptyBasket,
               time: 15,
               playing: true,
@@ -41,7 +40,6 @@ export default function gameReducer(
             }
 
         case "REDUCE_TIME":
-            console.log('time reduced')
             return {...state, time: state.time - 1}
 
         case "COLLECT_LEAF":
@@ -50,7 +48,7 @@ export default function gameReducer(
               msg: state.msg,
               level: state.level,
               scores: state.scores,
-              score: action.score,
+              score: state.score,
               trees: action.trees,
               basket: action.basket,
               time: state.time,
@@ -58,6 +56,10 @@ export default function gameReducer(
               user: state.user,
               topScore: state.topScore,
             }
+        
+        case "UPDATE_SCORE":
+        console.log('score updated')
+        return {...state, score: action.score}
 
         case "SET_NEXT_LEVEL":
             console.log('next level loaded')
@@ -98,5 +100,5 @@ export default function gameReducer(
 
         default:
             return state;
-    }
+    } 
   }
