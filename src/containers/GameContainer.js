@@ -1,18 +1,23 @@
 import React, { Component } from 'react';
 import {rules} from '../components/Data'
 import Trees from '../components/Trees'
+import LeaderBoard from '../components/LeaderBoard'
 import UserInput from '../components/UserInput'
 import { connect } from 'react-redux'
-import { bindActionCreators } from "redux";
-import * as actions from "../actions/game";
-// import axios from 'axios'
+// const API_URL = process.env.REACT_APP_API_URL;
+// import { bindActionCreators } from "redux";
+// import * as actions from "../actions/game";
 
 class Game extends Component {
 
   componentDidMount() {
-    console.log('CDM')
-    actions.fetchGames()
-  }
+    // ${API_URL}
+    fetch(`http://192.168.1.30:3001/api/v1/games.json`)
+          .then(response => response.json())
+          .then(game => this.props.fetchTopScore(game))
+          .catch(error => console.log(error));
+    }
+  
 
   playGame = () => {
     if (this.props.time === 15) {
@@ -73,8 +78,9 @@ class Game extends Component {
   render() {
     return (
       <div className="Game">
-        <h3>Level {this.props.level + 1}</h3>
+        <LeaderBoard game={this.props.topScore}/>
         <UserInput handleInput={this.handleInput} user={this.props.user}/>
+        <h3>Level {this.props.level + 1}</h3>
         <p>Basket: {this.props.basket.total} |
         Time: {this.props.time} |
         Score: {this.props.score}</p>
@@ -100,20 +106,20 @@ const mapStateToProps = (state) => {
   }
 }
 
-// const mapDispatchToProps = dispatch => ({
-//   fetchGames: () => dispatch({ type: "FETCH_GAMES" }),
-//   updateUser: input => dispatch({ type: "UPDATE_INPUT", input }),
-//   startLevel: () => dispatch({ type: "START_LEVEL" }),
-//   reduceTime: () => dispatch({ type: "REDUCE_TIME" }),
-//   collectLeaf: (trees, basket) => dispatch({ type: "COLLECT_LEAF", trees, basket }),
-//   setNextLevel: () => dispatch({ type: "SET_NEXT_LEVEL" }),
-//   saveGame: () => dispatch({ type: "SAVE_GAME" }),
-//   resetGame: () => dispatch({ type: "RESET_GAME" }),
-//   updateScore: score => dispatch({ type: "UPDATE_SCORE", score })
-// })
+const mapDispatchToProps = dispatch => ({
+  fetchTopScore: game => dispatch({ type: "FETCH_TOP_SCORE", game }),
+  updateUser: input => dispatch({ type: "UPDATE_INPUT", input }),
+  startLevel: () => dispatch({ type: "START_LEVEL" }),
+  reduceTime: () => dispatch({ type: "REDUCE_TIME" }),
+  collectLeaf: (trees, basket) => dispatch({ type: "COLLECT_LEAF", trees, basket }),
+  setNextLevel: () => dispatch({ type: "SET_NEXT_LEVEL" }),
+  saveGame: () => dispatch({ type: "SAVE_GAME" }),
+  resetGame: () => dispatch({ type: "RESET_GAME" }),
+  updateScore: score => dispatch({ type: "UPDATE_SCORE", score })
+})
 
-const mapDispatchToProps = dispatch => {
-  return { actions: bindActionCreators(actions, dispatch) };
-};
+// const mapDispatchToProps = dispatch => {
+//   return { actions: bindActionCreators(actions, dispatch) };
+// };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Game)
