@@ -14,13 +14,26 @@ class Game extends Component {
     // ${API_URL}
     fetch(`http://192.168.1.30:3001/api/v1/games.json`)
           .then(response => response.json())
-          .then(game => this.props.fetchTopScore(game))
+          .then(game => this.props.updateTopScore(game))
           .catch(error => console.log(error));
+    }
+
+    saveGame = (name, score) => {
+      let body = JSON.stringify({game: {name: name, score: score} })
+      fetch('http://192.168.1.30:3001/api/v1/games', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: body,
+      }).then((response) => {return response.json()})
+      .then(game => this.props.updateTopScore(game))
+      .catch(error => console.log(error));
     }
   
 
   playGame = () => {
-    if (this.props.time === 15) {
+    if (this.props.time === 18) {
         this.props.startLevel()
     }
     if (this.props.time > 0) {
@@ -30,7 +43,10 @@ class Game extends Component {
         if (this.props.level < 4) {
             this.props.setNextLevel()
         } else {
-            this.props.saveGame()
+            const s = this.props.scores
+            const score = (s[0] + s[1] + s[2] + s[3] + this.props.score)
+            const name = this.props.user
+            this.saveGame(name, score)
             this.props.resetGame()
         }
     }
@@ -107,13 +123,12 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = dispatch => ({
-  fetchTopScore: game => dispatch({ type: "FETCH_TOP_SCORE", game }),
+  updateTopScore: game => dispatch({ type: "UPDATE_TOP_SCORE", game }),
   updateUser: input => dispatch({ type: "UPDATE_INPUT", input }),
   startLevel: () => dispatch({ type: "START_LEVEL" }),
   reduceTime: () => dispatch({ type: "REDUCE_TIME" }),
   collectLeaf: (trees, basket) => dispatch({ type: "COLLECT_LEAF", trees, basket }),
   setNextLevel: () => dispatch({ type: "SET_NEXT_LEVEL" }),
-  saveGame: () => dispatch({ type: "SAVE_GAME" }),
   resetGame: () => dispatch({ type: "RESET_GAME" }),
   updateScore: score => dispatch({ type: "UPDATE_SCORE", score })
 })
