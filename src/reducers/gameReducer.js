@@ -58,7 +58,7 @@ export default function gameReducer(
             return {...state,
               msg: undefined,
               level: state.level + 1,
-              scores: [state.scores, state.score],
+              scores: state.scores.concat(state.score),
               score: 0,
               trees: trees.slice(),
               basket: emptyBasket,
