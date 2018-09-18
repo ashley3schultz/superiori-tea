@@ -4,6 +4,10 @@
   margin: auto;
 }
 
+div.trees {
+  margin-top: 75px;
+}
+
 div.tree {
   width: 20%;
   display: inline-block;
@@ -67,12 +71,6 @@ img.bud {
   width: auto;
 }
 
-.UserInput {
-  position: absolute;
-  top: 25px;
-  right: 25px;
-}
-
 .App-title {
   font-size: 1.5em;
 }
@@ -89,6 +87,19 @@ img.bud {
   color: rgb(194, 194, 194);
   font-size: 0.6em;
 }
+
+.UserInput {
+  float: right;
+  margin-right: 25px;
+  margin-top: 4px;
+}
+
+.LeaderBoard {
+  float: left;
+  margin-left: 25px;
+  line-height: 0px;
+}
+
 
 /* .App-intro {
   font-size: large;
