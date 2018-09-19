@@ -1,11 +1,16 @@
 // const API_URL = process.env.REACT_APP_API_URL;
 
-export const fetchTopScore = () => {
+export const fetchScores = () => {
     return dispatch => {
         return fetch(`http://192.168.1.30:3001/api/v1/games.json`)
         .then(response => response.json())
-        .then(game => dispatch(updateTopScore(game)))
+        .then(games => dispatch(updateScores(games)))
+        .catch(error => console.log(error));
     }
+}
+
+export const updateScores = (games) => {
+    return { type: "UPDATE_SCORES", games: games }
 }
 
 export const saveGame = (name, score) => {
@@ -18,28 +23,9 @@ export const saveGame = (name, score) => {
           },
           body: body,
       }).then(response => response.json())
-      .then(game => dispatch(updateTopScore(game)))
+      .then(game => dispatch(updateScores(game)))
+      .catch(error => console.log(error));
     }
-}
-
-// export const fetchAllScores = () => {
-//     return dispatch => {
-//         return fetch(`http://192.168.1.30:3001/api/v1/games.json`)
-//         .then(response => response.json())
-//         .then(game => dispatch(updateTopScore(game)))
-//     }
-// }
-
-// export const fetchMyScores = () => {
-//     return dispatch => {
-//         return fetch(`http://192.168.1.30:3001/api/v1/games.json`)
-//         .then(response => response.json())
-//         .then(game => dispatch(updateTopScore(game)))
-//     }
-// }
-
-export const updateTopScore = (game) => {
-    return { type: "UPDATE_TOP_SCORE", game: game }
 }
 
 export const updateUser = (input) => {
