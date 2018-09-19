@@ -7,47 +7,48 @@ import { connect } from 'react-redux'
 // const API_URL = process.env.REACT_APP_API_URL;
 // import { bindActionCreators } from "redux";
 // import * as actions from "../actions/game";
+// import {fetchTopScore} from "../actions/game";
+import { bindActionCreators } from "redux";
+import * as actions from "../actions/game";
+
 
 class GameContainer extends Component {
 
   componentDidMount() {
-    // ${API_URL}
-    fetch(`http://192.168.1.30:3001/api/v1/games.json`)
-          .then(response => response.json())
-          .then(game => this.props.updateTopScore(game))
-          .catch(error => console.log(error));
+    this.props.actions.fetchTopScore()
     }
 
-    saveGame = (name, score) => {
-      let body = JSON.stringify({game: {name: name, score: score} })
-      fetch('http://192.168.1.30:3001/api/v1/games', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: body,
-      }).then((response) => {return response.json()})
-      .then(game => this.props.updateTopScore(game))
-      .catch(error => console.log(error));
-    }
+    // saveGame = (name, score) => {
+    //   // let body = JSON.stringify({game: {name: name, score: score} })
+    //   // fetch('http://192.168.1.30:3001/api/v1/games', {
+    //   //     method: 'POST',
+    //   //     headers: {
+    //   //       'Content-Type': 'application/json'
+    //   //     },
+    //   //     body: body,
+    //   // }).then((response) => {return response.json()})
+    //   // .then(game => this.props.actions.updateTopScore(game))
+    //   // .catch(error => console.log(error));
+    // }
   
 
   playGame = () => {
-    if (this.props.data.time === 18) {
-        this.props.startLevel()
+    const { actions } = this.props
+    const { time, level, scores, score, user } = this.props.data
+    console.log(time)
+    if (time === 18) {
+        actions.startLevel()
     }
-    if (this.props.data.time > 0) {
-        this.props.reduceTime()
+    if (time > 0) {
+        actions.reduceTime()
         setTimeout(this.playGame, 1000);
     } else {
-        if (this.props.data.level < 4) {
-            this.props.setNextLevel()
+        if (level < 4) {
+            actions.setNextLevel()
         } else {
-            const s = this.props.data.scores
-            const score = (s[0] + s[1] + s[2] + s[3] + this.props.data.score)
-            const name = this.props.data.user
-            this.saveGame(name, score)
-            this.props.resetGame()
+            const totalScore = (scores[0] + scores[1] + scores[2] + scores[3] + score)
+            actions.saveGame(user, totalScore)
+            actions.resetGame()
         }
     }
   }
@@ -61,12 +62,15 @@ class GameContainer extends Component {
   }
 
   handleLeafClick = (event) => {
+    const { actions } = this.props
+    const { basket, trees, playing } = this.props.data
       const r = rules[this.props.data.level]
-      const b = this.props.data.basket
+      const b = basket
       const l = event.target.getAttribute('id').split('*')
-      const c = (l[0] === r.cultivar) ? 1 : 0
-      const q = (l[1] <= r.quality && c === 1) ? 1 : 0
-      const trees = this.props.data.trees.map(tree => { 
+      // const c = (l[0] === r.cultivar) ? 1 : 0
+      // const q = (l[1] <= r.quality && c === 1) ? 1 : 0
+
+      const newTrees = trees.map(tree => { 
         return {
           id: tree.id, 
           name: tree.name, 
@@ -74,26 +78,17 @@ class GameContainer extends Component {
             return {name: leaf.name, id: leaf.id, status: (leaf.id === l[2]) ? 'hide' : leaf.status}
           })
         }})
-      const basket = {
-        cultivar: b.cultivar + c,
-        quality: b.quality + q,
-        total: b.total + 1
-      }
-      if (this.props.data.playing === true && l[3] === 'show'){
-        this.props.collectLeaf(trees, basket)
-        const score = this.calculateScore(this.props.data.basket.cultivar, this.props.data.basket.total, this.props.data.basket.quality, r.outOf)
-        this.props.updateScore(score)
-      }
-  }
 
-  submitUser = (name) => {
-    this.props.updateUser(name)
+      if (playing === true && l[3] === 'show'){
+        actions.collectLeaf()
+        const score = this.calculateScore(basket.cultivar, basket.total, basket.quality, r.outOf)
+        actions.updateScore(score)
+      }
   }
 
   render() {
     return (
       <div className="Game">
-        {console.log(this.props.data)}
         <LeaderBoard game={this.props.data.topScore}/>
         {(this.props.data.user === '') ? 
           <UserInput/> : 
@@ -113,19 +108,8 @@ const mapStateToProps = (state) => {
   }
 }
 
-const mapDispatchToProps = dispatch => ({
-  updateTopScore: game => dispatch({ type: "UPDATE_TOP_SCORE", game }),
-  updateUser: input => dispatch({ type: "UPDATE_INPUT", input }),
-  startLevel: () => dispatch({ type: "START_LEVEL" }),
-  reduceTime: () => dispatch({ type: "REDUCE_TIME" }),
-  collectLeaf: (trees, basket) => dispatch({ type: "COLLECT_LEAF", trees, basket }),
-  setNextLevel: () => dispatch({ type: "SET_NEXT_LEVEL" }),
-  resetGame: () => dispatch({ type: "RESET_GAME" }),
-  updateScore: score => dispatch({ type: "UPDATE_SCORE", score })
-})
-
-// const mapDispatchToProps = dispatch => {
-//   return { actions: bindActionCreators(actions, dispatch) };
-// };
+const mapDispatchToProps = dispatch => {
+  return { actions: bindActionCreators(actions, dispatch) };
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(GameContainer)
