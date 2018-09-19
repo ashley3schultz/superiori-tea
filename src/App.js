@@ -36,7 +36,8 @@ class App extends Component {
 const mapStateToProps = (state) => {
   return {
     playing: state.playing,
-    user: state.user
+    user: state.user,
+    allScores: state.allScores
   }
 }
 
