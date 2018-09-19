@@ -11,11 +11,12 @@ export default function gameReducer(
         time: 18,
         playing: false,
         user: '',
-        topScore: {},
+        allScores: [],
     }, action) {
     switch (action.type) {
-        case "UPDATE_TOP_SCORE":
-            return {...state, topScore: action.game}
+
+        case "UPDATE_SCORES":
+            return {...state, allScores: action.games}
 
         case "UPDATE_USER":
             return {...state, user: action.input}
@@ -31,7 +32,7 @@ export default function gameReducer(
               time: 18,
               playing: true,
               user: state.user,
-              topScore: state.topScore,
+              allScores: state.allScores,
             }
 
         case "REDUCE_TIME":
@@ -48,7 +49,7 @@ export default function gameReducer(
         case "UPDATE_TREES":
             const newTrees = state.trees.map(tree => { 
                 return {
-                id: tree.id, name: tree.name, 
+                id: tree.id, name: tree.name, tag: tree.tag,
                 leaves: tree.leaves.map(leaf => {
                     return {name: leaf.name, id: leaf.id, status: (leaf.id === action.id) ? 'hide' : leaf.status}
                 })
@@ -69,7 +70,7 @@ export default function gameReducer(
               time: 18,
               playing: false,
               user: state.user,
-              topScore: state.topScore,
+              allScores: state.allScores,
             }
 
         case "RESET_GAME":
@@ -84,7 +85,7 @@ export default function gameReducer(
                 time: 18,
                 playing: false,
                 user: '',
-                topScore: state.topScore,
+                allScores: state.allScores,
             }
 
         default:
