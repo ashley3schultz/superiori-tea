@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import {rules} from '../components/Data'
-import Trees from '../components/Trees'
 import LeaderBoard from '../components/LeaderBoard'
 import UserInput from '../components/UserInput'
+import Game from '../components/Game'
 import { connect } from 'react-redux'
 // const API_URL = process.env.REACT_APP_API_URL;
 // import { bindActionCreators } from "redux";
 // import * as actions from "../actions/game";
 
-class Game extends Component {
+class GameContainer extends Component {
 
   componentDidMount() {
     // ${API_URL}
@@ -33,19 +33,19 @@ class Game extends Component {
   
 
   playGame = () => {
-    if (this.props.time === 18) {
+    if (this.props.data.time === 18) {
         this.props.startLevel()
     }
-    if (this.props.time > 0) {
+    if (this.props.data.time > 0) {
         this.props.reduceTime()
         setTimeout(this.playGame, 1000);
     } else {
-        if (this.props.level < 4) {
+        if (this.props.data.level < 4) {
             this.props.setNextLevel()
         } else {
-            const s = this.props.scores
-            const score = (s[0] + s[1] + s[2] + s[3] + this.props.score)
-            const name = this.props.user
+            const s = this.props.data.scores
+            const score = (s[0] + s[1] + s[2] + s[3] + this.props.data.score)
+            const name = this.props.data.user
             this.saveGame(name, score)
             this.props.resetGame()
         }
@@ -61,12 +61,12 @@ class Game extends Component {
   }
 
   handleLeafClick = (event) => {
-      const r = rules[this.props.level]
-      const b = this.props.basket
+      const r = rules[this.props.data.level]
+      const b = this.props.data.basket
       const l = event.target.getAttribute('id').split('*')
       const c = (l[0] === r.cultivar) ? 1 : 0
       const q = (l[1] <= r.quality && c === 1) ? 1 : 0
-      const trees = this.props.trees.map(tree => { 
+      const trees = this.props.data.trees.map(tree => { 
         return {
           id: tree.id, 
           name: tree.name, 
@@ -79,29 +79,29 @@ class Game extends Component {
         quality: b.quality + q,
         total: b.total + 1
       }
-      if (this.props.playing === true && l[3] === 'show'){
+      if (this.props.data.playing === true && l[3] === 'show'){
         this.props.collectLeaf(trees, basket)
-        const score = this.calculateScore(this.props.basket.cultivar, this.props.basket.total, this.props.basket.quality, r.outOf)
+        const score = this.calculateScore(this.props.data.basket.cultivar, this.props.data.basket.total, this.props.data.basket.quality, r.outOf)
         this.props.updateScore(score)
       }
   }
 
-  handleInput = (event) => {
-    const input = event.target.value
-    this.props.updateUser(input)
+  submitUser = (name) => {
+    this.props.updateUser(name)
   }
 
   render() {
     return (
       <div className="Game">
-        <LeaderBoard game={this.props.topScore}/>
-        <UserInput handleInput={this.handleInput} user={this.props.user}/>
-        <h3>Level {this.props.level + 1}</h3>
-        <p>Basket: {this.props.basket.total} |
-        Time: {this.props.time} |
-        Score: {this.props.score}</p>
-        {this.props.msg || <button onClick={this.playGame}>Start</button>}
-        <Trees trees={this.props.trees} handleLeafClick={this.handleLeafClick}/>
+        {console.log(this.props.data)}
+        <LeaderBoard game={this.props.data.topScore}/>
+        {(this.props.data.user === '') ? 
+          <UserInput/> : 
+          <Game 
+            data={this.props.data}
+            playGame={this.playGame}
+            handleLeafClick={this.handleLeafClick}
+          />}
       </div>
     );
   }
@@ -109,16 +109,7 @@ class Game extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    level: state.level,
-    scores: state.scores,
-    score: state.score,
-    time: state.time,
-    msg: state.msg,
-    trees: state.trees,
-    basket: state.basket,
-    playing: state.playing,
-    user: state.user,
-    topScore: state.topScore
+    data: state
   }
 }
 
@@ -137,4 +128,4 @@ const mapDispatchToProps = dispatch => ({
 //   return { actions: bindActionCreators(actions, dispatch) };
 // };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Game)
+export default connect(mapStateToProps, mapDispatchToProps)(GameContainer)
