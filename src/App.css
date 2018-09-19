@@ -46,6 +46,8 @@ header {
 
 .navbar a {
   color: gray;
+  padding: 0px 15px;
+  text-decoration: none;
 }
 
 div.trees {
@@ -145,6 +147,7 @@ input{
   float: left;
   margin-left: 25px;
   line-height: 0px;
+  position: absolute;
 }
 
 .LeaderBoard h3 {
