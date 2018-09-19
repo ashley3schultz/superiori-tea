@@ -4,38 +4,20 @@ import LeaderBoard from '../components/LeaderBoard'
 import UserInput from '../components/UserInput'
 import Game from '../components/Game'
 import { connect } from 'react-redux'
-// const API_URL = process.env.REACT_APP_API_URL;
-// import { bindActionCreators } from "redux";
-// import * as actions from "../actions/game";
-// import {fetchTopScore} from "../actions/game";
 import { bindActionCreators } from "redux";
 import * as actions from "../actions/game";
-
 
 class GameContainer extends Component {
 
   componentDidMount() {
     this.props.actions.fetchTopScore()
-    }
-
-    // saveGame = (name, score) => {
-    //   // let body = JSON.stringify({game: {name: name, score: score} })
-    //   // fetch('http://192.168.1.30:3001/api/v1/games', {
-    //   //     method: 'POST',
-    //   //     headers: {
-    //   //       'Content-Type': 'application/json'
-    //   //     },
-    //   //     body: body,
-    //   // }).then((response) => {return response.json()})
-    //   // .then(game => this.props.actions.updateTopScore(game))
-    //   // .catch(error => console.log(error));
-    // }
+    // this.props.actions.fetchAllScores()
+    // this.props.actions.fetchMYScores()
+  }
   
-
   playGame = () => {
     const { actions } = this.props
     const { time, level, scores, score, user } = this.props.data
-    console.log(time)
     if (time === 18) {
         actions.startLevel()
     }
@@ -62,27 +44,16 @@ class GameContainer extends Component {
   }
 
   handleLeafClick = (event) => {
-    const { actions } = this.props
-    const { basket, trees, playing } = this.props.data
-      const r = rules[this.props.data.level]
-      const b = basket
-      const l = event.target.getAttribute('id').split('*')
-      // const c = (l[0] === r.cultivar) ? 1 : 0
-      // const q = (l[1] <= r.quality && c === 1) ? 1 : 0
-
-      const newTrees = trees.map(tree => { 
-        return {
-          id: tree.id, 
-          name: tree.name, 
-          leaves: tree.leaves.map(leaf => {
-            return {name: leaf.name, id: leaf.id, status: (leaf.id === l[2]) ? 'hide' : leaf.status}
-          })
-        }})
-
-      if (playing === true && l[3] === 'show'){
-        actions.collectLeaf()
-        const score = this.calculateScore(basket.cultivar, basket.total, basket.quality, r.outOf)
+      const { actions } = this.props
+      const { basket, playing, level } = this.props.data
+      const leaf = event.target.getAttribute('id').split('*')
+      const c = (leaf[0] === rules[level].cultivar) ? 1 : 0
+      const q = (leaf[1] <= rules[level].quality && c === 1) ? 1 : 0
+      if (playing === true && leaf[3] === 'show'){
+        actions.collectLeaf(c, q)
+        const score = this.calculateScore(basket.cultivar, basket.total, basket.quality, rules[level].outOf)
         actions.updateScore(score)
+        actions.updateTrees(leaf[2])
       }
   }
 
