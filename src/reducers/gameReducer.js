@@ -17,7 +17,7 @@ export default function gameReducer(
         case "UPDATE_TOP_SCORE":
             return {...state, topScore: action.game}
 
-        case "UPDATE_INPUT":
+        case "UPDATE_USER":
             return {...state, user: action.input}
 
         case "START_LEVEL":
@@ -38,19 +38,23 @@ export default function gameReducer(
             return {...state, time: state.time - 1}
 
         case "COLLECT_LEAF":
-            return {...state,
-              msg: state.msg,
-              level: state.level,
-              scores: state.scores,
-              score: state.score,
-              trees: action.trees,
-              basket: action.basket,
-              time: state.time,
-              playing: state.playing,
-              user: state.user,
-              topScore: state.topScore,
+            const basket = {
+                cultivar: state.basket.cultivar + action.c,
+                quality: state.basket.quality + action.q,
+                total: state.basket.total + 1
             }
-        
+            return {...state, basket: basket}
+
+        case "UPDATE_TREES":
+            const newTrees = state.trees.map(tree => { 
+                return {
+                id: tree.id, name: tree.name, 
+                leaves: tree.leaves.map(leaf => {
+                    return {name: leaf.name, id: leaf.id, status: (leaf.id === action.id) ? 'hide' : leaf.status}
+                })
+            }})
+            return {...state, trees: newTrees}
+
         case "UPDATE_SCORE":
         return {...state, score: action.score}
 
