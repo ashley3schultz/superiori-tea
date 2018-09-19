@@ -54,8 +54,12 @@ export const reduceTime = () => {
     return { type: "REDUCE_TIME" }
 }
 
-export const collectLeaf = (trees, basket) => {
-    return { type: "COLLECT_LEAF", trees: trees, basket: basket }
+export const collectLeaf = (c, q) => {
+    return { type: "COLLECT_LEAF", c: c, q: q}
+}
+
+export const updateTrees = (id) => {
+      return { type: "UPDATE_TREES", id: id}
 }
 
 export const updateScore = (score) => {
