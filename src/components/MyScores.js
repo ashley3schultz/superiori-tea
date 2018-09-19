@@ -1,16 +1,35 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux'
 
-const MyScores = props => {
-      return (
-        <div>
-            <h1>My Scores</h1>
-            <ol>
-                <li>Date: 1/15/2018 | Score: 1265</li>
-                <li>Date: 1/20/2018 | Score: 1149</li>
-                <li>Date: 2/11/2018 | Score: 1460</li>
-            </ol>
-            
-        </div>
-    )
+class MyScores extends Component {
+
+    
+    render() {
+
+        const renderGames = this.props.scores.map(game => {
+            return (
+            <li>
+                Date: {game.user} | Score: {game.score}
+            </li> )
+        })
+        console.log(this.props.scores)
+
+        return (
+            <div>
+                <h1>My Scores</h1>
+                <ol>
+                    {(this.props.scores.length === 0) ? null : {renderGames}}
+                </ol>
+                
+            </div>
+        )
+    }
 }
-export default MyScores
+
+const mapStateToProps = (state) => {
+    return {
+      scores: state.allScores
+    }
+}
+
+export default connect(mapStateToProps)(MyScores)
