@@ -10,9 +10,7 @@ import * as actions from "../actions/game";
 class GameContainer extends Component {
 
   componentDidMount() {
-    this.props.actions.fetchTopScore()
-    // this.props.actions.fetchAllScores()
-    // this.props.actions.fetchMYScores()
+    this.props.actions.fetchScores()
   }
   
   playGame = () => {
@@ -60,7 +58,9 @@ class GameContainer extends Component {
   render() {
     return (
       <div className="Game">
-        <LeaderBoard game={this.props.data.topScore}/>
+        {(this.props.data.allScores.length === 0) ? 
+        null : 
+        <LeaderBoard game={this.props.data.allScores[0]}/>}
         {(this.props.data.user === '') ? 
           <UserInput/> : 
           <Game 
