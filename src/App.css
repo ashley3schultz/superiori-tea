@@ -15,13 +15,6 @@
   opacity: 1;
 }
 
-
-.App {
-  text-align: center;
-  width: 800px;
-  margin: auto;
-}
-
 .dirt {
   width: 800px;
   height: 300px;
@@ -29,6 +22,30 @@
   position: absolute;
   top: 485px;
   background-color: rgb(68, 58, 58);
+}
+
+.App {
+  text-align: center;
+  width: 800px;
+  margin: auto;
+}
+
+header {
+  margin: 0px;
+  padding: 0px;
+  line-height: 1em;
+  background-color: rgb(255, 255, 255, 0.5);
+  color: gray;
+}
+
+.navbar {
+  padding: 5px;
+  background-color: rgb(255, 255, 255, 0.5);
+  color: gray;
+}
+
+.navbar a {
+  color: gray;
 }
 
 div.trees {
@@ -116,15 +133,11 @@ img.bud {
   clear: both;
 }
 
-.UserInput {
+input{
   width: 200px;
-  float: right;
-  margin-right: 25px;
-  margin-top: 4px;
-}
-
-.UserInput input{
-  float: right;
+  height: 30px;
+  text-align: center;
+  font-size: 1.5em;
 }
 
 .LeaderBoard {
