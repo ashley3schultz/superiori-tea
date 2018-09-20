@@ -1,8 +1,8 @@
-// const API_URL = process.env.REACT_APP_API_URL;
+const API_URL = process.env.REACT_APP_API_URL;
 
 export const fetchScores = () => {
     return dispatch => {
-        return fetch(`http://192.168.1.30:3001/api/v1/games.json`)
+        return fetch(`${API_URL}.json`)
         .then(response => response.json())
         .then(games => dispatch(updateScores(games)))
         .catch(error => console.log(error));
@@ -16,7 +16,7 @@ export const updateScores = (games) => {
 export const saveGame = (name, score) => {
     let body = JSON.stringify({game: {name: name, score: score} })
     return dispatch => {
-        return fetch('http://192.168.1.30:3001/api/v1/games', {
+        return fetch(`${API_URL}`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
