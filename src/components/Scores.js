@@ -3,7 +3,7 @@ import React from 'react';
 const Scores = props => {
     const games = props.games.sort((a, b) => b.score - a.score )
       return (
-        <div>
+        <div className='scoreboard'>
             <h2>{(props.type === 'm') ? 
             "My" : "Top"} Scores</h2>
             {(props.games.length === 0) ? 
@@ -13,9 +13,9 @@ const Scores = props => {
                     <li 
                         key={game.id}>
                         {(props.type === 'm') ? 
-                        `Date: ${game.created_at.split('T')[0]} ` : 
-                        `Name: ${game.user} `}
-                        | Score: {game.score}
+                        `${game.created_at.split('T')[0]}: ` : 
+                        `${game.user}: `}
+                        {game.score}
                     </li>
                 )}
             </ol>

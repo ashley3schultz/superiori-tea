@@ -203,3 +203,12 @@ button {
 .level {
   color: rgb(162, 167, 44);
 }
+
+.scoreboard {
+  width: 200px;
+  margin: auto;
+}
+
+.scoreboard li {
+  text-align: left;
+}
