@@ -33,23 +33,24 @@ class GameContainer extends Component {
     }
   }
 
-  calculateScore(num1, num2, num3, num4) {
-    var a = Math.floor(num1 / num2 * 100 || 0)
-    var b = Math.floor(num3 / num1 * 100 || 0)
-    var c = Math.floor(num1 / num4 * 100 || 0)
-    var total = (a + b + c)
-    return total
+  calculateScore(rule) {
+    const { cultivar, total, quality } = this.props.data.basket
+    var a = cultivar / total * 100 || 0
+    var b = quality / cultivar * 100 || 0
+    var c = quality / rule * 100 || 0
+    var sum = Math.floor(a + b + c)
+    return sum
   }
 
   handleLeafClick = (event) => {
       const { actions } = this.props
-      const { basket, playing, level } = this.props.data
+      const { playing, level } = this.props.data
       const leaf = event.target.getAttribute('id').split('*')
       const c = (leaf[0] === rules[level].cultivar) ? 1 : 0
       const q = (leaf[1] <= rules[level].quality && c === 1) ? 1 : 0
       if (playing === true && leaf[3] === 'show'){
         actions.collectLeaf(c, q)
-        const score = this.calculateScore(basket.cultivar, basket.total, basket.quality, rules[level].outOf)
+        const score = this.calculateScore(rules[level].outOf)
         actions.updateScore(score)
         actions.updateTrees(leaf[2])
       }
