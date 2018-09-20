@@ -36,7 +36,7 @@ class GameContainer extends Component {
   calculateScore(rule) {
     const { cultivar, total, quality } = this.props.data.basket
     var a = cultivar / total * 100 || 0
-    var b = quality / cultivar * 100 || 0
+    var b = quality / total * 100 || 0
     var c = quality / rule * 100 || 0
     var sum = Math.floor(a + b + c)
     return sum
