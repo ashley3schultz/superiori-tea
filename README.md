@@ -1,8 +1,6 @@
 # Superiori-Tea
 **A tea harvesting game**
-
-![](./screenshot.png)
-
+![screenshot](https://raw.githubusercontent.com/ashley3schultz/superiori-tea/master/screenshot.png)
 ## Application features
  - Five levels, one for each tea type
  - Scoring based on multiple challenges on each level
