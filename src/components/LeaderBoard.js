@@ -4,7 +4,7 @@ const LeaderBoard = props => {
 
       return (
         <div className='LeaderBoard'>
-            <h3>{props.game.user}: {props.game.score}</h3>
+            <h5>Leader</h5><h4>{props.game.user}</h4><h3>{props.game.score}</h3>
         </div>
     )
 }
