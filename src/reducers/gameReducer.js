@@ -19,6 +19,7 @@ export default function gameReducer(
             return {...state, games: action.games}
 
         case "ADD_GAME":
+            console.log(action.game)
             return {...state, games: state.games.concat(action.game)}
 
         case "UPDATE_USER":
@@ -60,6 +61,7 @@ export default function gameReducer(
             return {...state, trees: newTrees}
 
         case "UPDATE_SCORE":
+        console.log(action.score)
         return {...state, score: action.score}
 
         case "SET_NEXT_LEVEL":

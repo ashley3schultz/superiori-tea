@@ -13,8 +13,8 @@ export const updateGames = (games) => {
     return { type: "UPDATE_GAMES", games: games }
 }
 
-export const saveGame = (name, score) => {
-    let body = JSON.stringify({game: {name: name, score: score} })
+export const saveGame = (user, score) => {
+    let body = JSON.stringify({game: {user: user, score: score} })
     return dispatch => {
         return fetch(`${API_URL}`, {
           method: 'POST',
