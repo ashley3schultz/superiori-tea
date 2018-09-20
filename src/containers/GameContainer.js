@@ -38,7 +38,9 @@ class GameContainer extends Component {
     var a = cultivar / total * 100 || 0
     var b = quality / total * 100 || 0
     var c = quality / rule * 100 || 0
-    var sum = Math.floor(a + b + c)
+    var d = (Math.floor(a + b + c) === 300) ? this.props.data.time * 50 : 0
+    var sum = Math.floor(a + b + c + d)
+    console.log(sum)
     return sum
   }
 
@@ -50,7 +52,7 @@ class GameContainer extends Component {
       const q = (leaf[1] <= rules[level].quality && c === 1) ? 1 : 0
       if (playing === true && leaf[3] === 'show'){
         actions.collectLeaf(c, q)
-        const score = this.calculateScore(rules[level].outOf)
+        const score = this.calculateScore(rules[level].outOf - 1)
         actions.updateScore(score)
         actions.updateTrees(leaf[2])
       }
@@ -61,7 +63,7 @@ class GameContainer extends Component {
       <div className="Game">
         {(this.props.data.games.length === 0) ? 
         null : 
-        <LeaderBoard game={this.props.data.games[0]}/>}
+        <LeaderBoard game={this.props.data.games.sort((a, b) => b.score - a.score)[0]}/>}
         {(this.props.data.user === '') ? 
           <UserInput/> : 
           <Game 
