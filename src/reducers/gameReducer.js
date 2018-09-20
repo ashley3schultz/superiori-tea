@@ -30,7 +30,7 @@ export default function gameReducer(
               level: state.level,
               scores: state.scores,
               score: 0,
-              trees: trees.sort(function(a, b){ return Math.random() - Math.random() }),
+              trees: trees.sort((a, b) => Math.random() - Math.random()),
               basket: emptyBasket,
               time: 18,
               playing: true,
@@ -77,7 +77,6 @@ export default function gameReducer(
             }
 
         case "RESET_GAME":
-            console.log('new game loaded')
             return {...state,
                 msg: undefined,
                 level: 0,
