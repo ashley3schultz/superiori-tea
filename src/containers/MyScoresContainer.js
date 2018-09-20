@@ -15,9 +15,9 @@ class MyScoresContainer extends Component {
             <div>
                 {(this.props.user === '') ? 
                 <UserInput/> :
-                (this.props.allScores.length === 0) ? 
+                (this.props.games.length === 0) ? 
                 'Loading Scores...' : 
-                <Scores type='m' games={this.props.allScores.filter(game => game.user === this.props.user)}/>}
+                <Scores type='m' games={this.props.games.filter(game => game.user === this.props.user)}/>}
             </div>
         )
     }
@@ -25,8 +25,8 @@ class MyScoresContainer extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        allScores: state.allScores,
-      user: state.user
+        games: state.games,
+        user: state.user
     }
 }
 

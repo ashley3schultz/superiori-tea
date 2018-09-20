@@ -4,13 +4,13 @@ export const fetchScores = () => {
     return dispatch => {
         return fetch(`${API_URL}.json`)
         .then(response => response.json())
-        .then(games => dispatch(updateScores(games)))
+        .then(games => dispatch(updateGames(games)))
         .catch(error => console.log(error));
     }
 }
 
-export const updateScores = (games) => {
-    return { type: "UPDATE_SCORES", games: games }
+export const updateGames = (games) => {
+    return { type: "UPDATE_GAMES", games: games }
 }
 
 export const saveGame = (name, score) => {
@@ -23,9 +23,13 @@ export const saveGame = (name, score) => {
           },
           body: body,
       }).then(response => response.json())
-      .then(game => dispatch(updateScores(game)))
+      .then(game => dispatch(addGame(game)))
       .catch(error => console.log(error));
     }
+}
+
+export const addGame = (game) => {
+    return { type: "ADD_GAME", game: game }
 }
 
 export const updateUser = (input) => {

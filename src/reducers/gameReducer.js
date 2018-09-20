@@ -11,12 +11,15 @@ export default function gameReducer(
         time: 18,
         playing: false,
         user: '',
-        allScores: [],
+        games: [],
     }, action) {
     switch (action.type) {
 
-        case "UPDATE_SCORES":
-            return {...state, allScores: action.games}
+        case "UPDATE_GAMES":
+            return {...state, games: action.games}
+
+        case "ADD_GAME":
+            return {...state, games: state.games.concat(action.game)}
 
         case "UPDATE_USER":
             return {...state, user: action.input}
@@ -32,7 +35,7 @@ export default function gameReducer(
               time: 18,
               playing: true,
               user: state.user,
-              allScores: state.allScores,
+              games: state.games,
             }
 
         case "REDUCE_TIME":
@@ -70,7 +73,7 @@ export default function gameReducer(
               time: 18,
               playing: false,
               user: state.user,
-              allScores: state.allScores,
+              games: state.games,
             }
 
         case "RESET_GAME":
@@ -85,7 +88,7 @@ export default function gameReducer(
                 time: 18,
                 playing: false,
                 user: '',
-                allScores: state.allScores,
+                games: state.games,
             }
 
         default:

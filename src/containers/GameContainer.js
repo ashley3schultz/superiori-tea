@@ -58,9 +58,9 @@ class GameContainer extends Component {
   render() {
     return (
       <div className="Game">
-        {(this.props.data.allScores.length === 0) ? 
+        {(this.props.data.games.length === 0) ? 
         null : 
-        <LeaderBoard game={this.props.data.allScores[0]}/>}
+        <LeaderBoard game={this.props.data.games[0]}/>}
         {(this.props.data.user === '') ? 
           <UserInput/> : 
           <Game 

@@ -12,8 +12,8 @@ class ScoresContainer extends Component {
     render() {
         return (
             <div>
-                {(this.props.allScores.length === 0) ? 'Loading Scores...' : 
-                <Scores type='t' games={this.props.allScores}/>}
+                {(this.props.games.length === 0) ? 'Loading Scores...' : 
+                <Scores type='t' games={this.props.games}/>}
             </div>
         )
     }
@@ -21,7 +21,7 @@ class ScoresContainer extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        allScores: state.allScores,
+        games: state.games,
         user: state.user
     }
 }
