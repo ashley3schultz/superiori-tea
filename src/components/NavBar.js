@@ -6,7 +6,7 @@ const NavBar = props => {
         <div className="navbar">
             <NavLink to='/'>Play Game</NavLink>
             <NavLink to='/my-scores'>My Scores</NavLink>
-            <NavLink to='/top-scores'>Top Scores</NavLink>
+            <NavLink to='/scores'>Top Scores</NavLink>
         </div>
     )
 }
