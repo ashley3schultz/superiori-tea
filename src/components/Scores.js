@@ -1,6 +1,7 @@
 import React from 'react';
             
 const Scores = props => {
+    const games = props.games.sort((a, b) => b.score - a.score )
       return (
         <div>
             <h2>{(props.type === 'm') ? 
@@ -8,7 +9,7 @@ const Scores = props => {
             {(props.games.length === 0) ? 
                 <p>No games found.</p> : null}
             <ol>
-                {props.games.map(game => 
+                {games.map(game => 
                     <li 
                         key={game.id}>
                         {(props.type === 'm') ? 
