@@ -28,7 +28,7 @@
   text-align: center;
   width: 800px;
   margin: auto;
-  color: rgb(162, 167, 44);
+  color: gray;
 }
 
 header {
@@ -64,7 +64,7 @@ div.stem {
   left: 80px;
   width: 1.5px;
   height: 300px;
-  background-color: rgb(160, 160, 45);
+  background-color: rgb(162, 167, 44);
   position: absolute;
 }
 
@@ -153,14 +153,14 @@ input{
   font-size: 3em;
   line-height: 0px;
   color: lightgray;
-  margin: 32px auto;
+  margin: 30px auto;
 }
 
 .LeaderBoard h4 {
   font-size: 1.5em;
   line-height: 0px;
   color: rgb(165, 165, 165);
-  margin: 27px auto;
+  margin: 25px auto;
 }
 
 .LeaderBoard h5 {
@@ -198,4 +198,8 @@ button {
   height: 50px;
   color: gray;
   border-radius: 50%;
+}
+
+.level {
+  color: rgb(162, 167, 44);
 }
