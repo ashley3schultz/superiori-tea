@@ -5,13 +5,12 @@ import Backgound from './components/Background';
 import { connect } from 'react-redux'
 import { BrowserRouter, Route, Switch } from "react-router-dom"
 import NavBar from "./components/NavBar"
-import TopScores from "./components/TopScores"
-import MyScores from "./components/MyScores"
+import MyScoresContainer from "./containers/MyScoresContainer"
+import ScoresContainer from "./containers/ScoresContainer"
 
 class App extends Component {
   render() {
     return (
- 
       <div className="App">
         <Backgound playing={this.props.playing}/>
         <div className="dirt"></div>
@@ -23,8 +22,8 @@ class App extends Component {
             </header>
             <Switch>
               <Route path="/" component={GameContainer} exact/>
-              <Route path="/my-scores" component={MyScores}/>
-              <Route path="/top-scores" component={TopScores}/>
+              <Route path="/my-scores" component={MyScoresContainer}/>
+              <Route path="/scores" component={ScoresContainer}/>
             </Switch>
           </div>
         </BrowserRouter>
