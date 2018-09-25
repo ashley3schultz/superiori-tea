@@ -20,7 +20,7 @@ const Game = props => {
                 ~ Quality: {Math.floor(qty)}% ~
                 Quota: {Math.floor(qta)}%
             </p> : null}
-            {msg || <button onClick={props.playGame}>Start</button>}
+            {msg || <button className='start' onClick={props.playGame}>Start</button>}
             {(playing) ? 
             <Trees trees={trees} handleLeafClick={props.handleLeafClick}/> :
             null}
