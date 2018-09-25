@@ -15,7 +15,7 @@ const Scores = props => {
                         {(props.type === 'm') ? 
                         `${game.created_at.split('T')[0]}: ` : 
                         `${game.user}: `}
-                        {game.score}
+                        {game.score} ~ {game.likes}<button className='likeButton' id={game.id} onClick={props.handleLike}>+</button>
                     </li>
                 )}
             </ol>
