@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux'
+// import { connect } from 'react-redux'
 import Scores from '../components/Scores'
-import {fetchScores} from "../actions/game";
+// import {fetchScores} from "../actions/game";
 const API_URL = process.env.REACT_APP_API_URL;
 
 class ScoresContainer extends Component {
@@ -19,7 +19,7 @@ class ScoresContainer extends Component {
     }
           
     handleLike = (event) => {
-        const gameid = parseInt(event.target.getAttribute('id'))
+        const gameid = parseInt(event.target.getAttribute('id'), 1)
         const gamearray = (this.state.games.length === 0) ? this.props.games : this.state.games
         const games = gamearray.map(game => {
             return {
@@ -31,6 +31,7 @@ class ScoresContainer extends Component {
             }
         })
         this.setState({games: games})
+        
         let body = JSON.stringify({game: {id: gameid} })
         fetch(`${API_URL}/${gameid}`, {
               method: 'PATCH',
@@ -49,12 +50,12 @@ class ScoresContainer extends Component {
     }
 }
 
-const mapStateToProps = (state) => {
-    return {
-        games: state.games,
-        user: state.user
-    }
-}
+// const mapStateToProps = (state) => {
+//     return {
+//         games: state.games,
+//         user: state.user
+//     }
+// }
 
-
-export default connect(mapStateToProps, {fetchScores})(ScoresContainer)
+export default ScoresContainer
+// export default connect(mapStateToProps, {fetchScores})(ScoresContainer)
