@@ -16,10 +16,11 @@ export default function gameReducer(
     switch (action.type) {
 
         case "UPDATE_GAMES":
-            return {...state, games: action.games}
+            const games = action.games.sort((a, b) => b.score - a.score)
+            return {...state, games: games}
 
         case "ADD_GAME":
-            return {...state, games: state.games.concat(action.game)}
+            return {...state, games: state.games.concat(action.game).sort((a, b) => b.score - a.score)}
 
         case "UPDATE_USER":
             return {...state, user: action.input}
