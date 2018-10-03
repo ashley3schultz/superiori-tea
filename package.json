@@ -5,8 +5,8 @@
   "dependencies": {
     "axios": "^0.18.0",
     "proxy": "http://10.0.0.31:3000",
-    "react": "^16.4.2",
-    "react-dom": "^16.4.2",
+    "react": "^16.5.2",
+    "react-dom": "^16.5.2",
     "react-native-uuid": "^1.4.9",
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.3.1",
@@ -20,5 +20,11 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
-  }
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
 }
