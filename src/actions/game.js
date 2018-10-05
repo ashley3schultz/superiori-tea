@@ -4,7 +4,10 @@ export const fetchScores = () => {
     return dispatch => {
         return fetch(`${API_URL}`)
         .then(response => response.json())
-        .then(games => dispatch(updateGames(games)))
+        .then(games => {
+            console.log(games)
+            dispatch(updateGames(games))
+        })
         .catch(error => console.log(error));
     }
 }
