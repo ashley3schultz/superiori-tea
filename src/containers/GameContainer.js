@@ -27,9 +27,7 @@ class GameContainer extends Component {
             actions.setNextLevel()
         } else {
             const totalScore = (scores[0] + scores[1] + scores[2] + scores[3] + score)
-            console.log('A')
             actions.saveGame(user, totalScore)
-            console.log('B')
             actions.resetGame()
         }
     }
