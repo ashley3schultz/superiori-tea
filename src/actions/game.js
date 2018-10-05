@@ -1,12 +1,9 @@
 const API_URL = process.env.REACT_APP_API_URL;
-
+var proxyUrl = 'https://cors-anywhere.herokuapp.com/'
+    
 export const fetchScores = () => {
     return dispatch => {
-        return fetch(`${API_URL}`, {
-            method: 'GET',
-            mode: 'cors',
-            headers: { 'Content-Type': 'text' }
-           })
+        return fetch(proxyUrl + API_URL)
         .then(response => response.json())
         .then(games => dispatch(updateGames(games)))
         .catch(error => console.log(error));
