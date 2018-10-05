@@ -17,7 +17,7 @@ export const updateGames = (games) => {
 export const saveGame = (user, score) => {
     let body = JSON.stringify({game: {user: user, score: score} })
     return dispatch => {
-        return fetch(`${API_URL}`, {
+        return fetch(proxyUrl + API_URL, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
