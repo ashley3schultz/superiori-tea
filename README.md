@@ -77,7 +77,7 @@ From the command line:
 * thunk
 * uuid
  
-### Referances
+## Referances
 * [Live Webite](https://superiori-tea.herokuapp.com/)
 * [Live API](https://superiori-tea-api.herokuapp.com/)
 * [Rails API Repo](https://github.com/ashley3schultz/superiori-tea-api)
