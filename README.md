@@ -1,7 +1,7 @@
 # Superiori-Tea
 **A tea harvesting game**
 
-Superiori-Tea is a game with five challenges. Each challange is scored based on meeting specific criterias for each challange and the time it took to complete the challange. When the final challange is completed, your score is saved in the database. If you were able to beet the top score, you will be added to the leaderboard. 
+Superiori-Tea is a game with five challenges. Each challange is scored based on meeting specific criterias and the time it took to complete the challange. When the final challange is completed, your score is saved in the database. If you were able to beet the top score, you will be added to the leaderboard. 
 
 [Play Game](https://superiori-tea.herokuapp.com/)
 
@@ -20,7 +20,7 @@ Once your name is entered, you will be able to see level you are on
 2. To begin the first level, click start. 
 3. Click leaves to collect them and be sure to follow the instructions to get the highest quality and purity.
 
-#### Levels
+### Levels
 **Level 1:**
 Black Tea Challenge, Only pick the young leaves from da ye zhong cultivar
 
@@ -36,7 +36,7 @@ White Tea Challenge, Only pick the buds from da bai cultivar
 **Level 5:**
 Yellow Tea Challenge, Only pick the buds from jin ji cultivar
 
-#### Scoring
+### Scoring
 While playing each level, you will see three percentage scores near the top
 
 * **Purity:** the percentage of leaves seleced from the correct plant.
@@ -47,7 +47,7 @@ Try to achieve 100% in each category.
 You will also get extra points based on how soon you achieve 100% in all categories. 
 The level ends when the timer gets to 0.
 
-#### Menu 
+### Menu 
 Three tabs to sellect from located at the top of the screen
 * **Play Game:** go to the start game screen
 * **My Scores:** view your scores
@@ -55,10 +55,10 @@ Three tabs to sellect from located at the top of the screen
 
 ## Munnual Installation 
 
-#### Getting Started 
+### Getting Started 
 Make sure react is installed on device.
 
-#### Installing
+### Installing
 From the command line:
   ```
   git clone 'git@github.com:ashley3schultz/superiori-tea.git'
@@ -70,7 +70,7 @@ From the command line:
   npm start
   ```
 	
-#### Built With
+### Built With
 * react.js
 * redux
 * react-router
