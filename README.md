@@ -1,7 +1,7 @@
 # Superiori-Tea
 **A tea harvesting game**
 
-Superiori-Tea is a game with five challenges. Each challange is scored based on meeting specific criterias and the time it took to complete the challange. When the final challange is completed, your score is saved in the database. If you were able to beet the top score, you will be added to the leaderboard. 
+Superiori-Tea is a game with five challenges. Each challange is scored based on meeting specific criterias and the time it took to complete the challange. When the final challange is completed, your score is saved in the database. If you were able to beat the top score, you will be added to the leaderboard. 
 
 [Play Game](https://superiori-tea.herokuapp.com/)
 
